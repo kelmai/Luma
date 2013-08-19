@@ -1,0 +1,18 @@
+{
+  "modinfoversion": 2,
+  "modlist": [{
+    "modid": "luma",
+    "name": "Luma",
+    "description": "Luma adds Colored Luma Lamps and Multilamps which change color according to redstone power strength",
+    "version": "0.1.0",
+    "mcversion": "1.6.2",
+    "url": "http://www.kelmai.com/luma",
+    "updateUrl": "http://www.kelmai.com/luma",
+    "authors": [ "KelMai" ],
+    "credits": "Created by KelMai",
+    "logoFile": "assets/luma/textures/mod/logo.png",
+    "parent" : "",
+    "screenshots": []
+    "requiredMods": [ "Forge" ]
+  }]
+}
