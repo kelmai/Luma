@@ -12,7 +12,7 @@
     "credits": "Created by KelMai",
     "logoFile": "assets/luma/textures/mod/logo.png",
     "parent" : "",
-    "screenshots": []
+    "screenshots": [],
     "requiredMods": [ "Forge" ]
   }]
 }
