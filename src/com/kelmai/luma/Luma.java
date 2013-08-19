@@ -1,26 +1,13 @@
 package com.kelmai.luma;
 
-import com.kelmai.luma.blocks.BlockLumaLamp;
-import com.kelmai.luma.blocks.BlockMultiLamp;
-import com.kelmai.luma.items.ItemBlockLumaLamp;
-import com.kelmai.luma.items.ItemChromaStone;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.Configuration;
-
-import java.io.File;
 
 /**
- * Created with IntelliJ IDEA.
+ * Created with IntelliJ IDEA. Tube Edition
  * User: KelMai
  * Date: 08.08.13
  * Time: 20:54
