@@ -5,14 +5,11 @@ import com.kelmai.luma.Luma;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -22,7 +19,7 @@ import java.util.Random;
  * Created with IntelliJ IDEA.
  * User: KelMai
  * Date: 08.08.13
- * Time: 21:44
+ * Time: 21:42
  */
 public class BlockLumaLamp extends Block {
 
@@ -33,7 +30,7 @@ public class BlockLumaLamp extends Block {
     private boolean inverted;
 
     public BlockLumaLamp(int id, boolean powered, boolean bars, boolean inverted) {
-        super(id, Material.glass);
+        super(id, Material.redstoneLight);
 
         this.powered = powered;
         this.bars = bars;

@@ -2,14 +2,12 @@ package com.kelmai.luma.blocks;
 
 import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.Luma;
-import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -18,7 +16,7 @@ import java.util.Random;
  * Created with IntelliJ IDEA.
  * User: KelMai
  * Date: 13.08.13
- * Time: 21:30
+ * Time: 21:33
  */
 
 // TODO fix indirect power
@@ -32,7 +30,7 @@ public class BlockMultiLamp extends Block {
     private boolean bars;
 
     public BlockMultiLamp(int id, boolean powered, boolean bars) {
-        super(id, Material.glass);
+        super(id, Material.redstoneLight);
 
         this.bars = bars;
         this.powered = powered;

@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
  * Created with IntelliJ IDEA.
  * User: KelMai
  * Date: 11.08.13
- * Time: 22:32
+ * Time: 22:33
  */
 public class ItemBlockLumaLamp extends ItemBlock {
 
