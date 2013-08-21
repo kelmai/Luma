@@ -1,10 +1,16 @@
 package com.kelmai.luma;
 
+import com.kelmai.luma.blocks.BlockTutBox;
+import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
+import com.kelmai.luma.client.ClientProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.block.Block;
 
 /**
  * Created with IntelliJ IDEA. Tube Edition
@@ -39,15 +45,25 @@ public class Luma {
 
     public static CommonProxy proxy;
 
+    public final static Block TutBox = new BlockTutBox(2020);
+
     @EventHandler
     public void load(FMLInitializationEvent event) {
 
         ConfigManager.initConfiguration(event);
 
-        BlockManager.makeBlocks();
         ItemManager.makeItems();
+        BlockManager.makeBlocks();
+
 
         RecipeManager.makeRecipes();
+
+        GameRegistry.registerBlock(TutBox, "blockTutBox");
+        GameRegistry.registerTileEntity(TileEntityTutBox.class, "tileEntityTutBox");
+
+        LanguageRegistry.addName(TutBox, "Tutorial Box");
+
+        proxy.registerRenderers();
     }
 
     public static void log(String str) {

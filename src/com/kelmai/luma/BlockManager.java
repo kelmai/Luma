@@ -54,6 +54,8 @@ public class BlockManager {
 
         blockMultiLampBarOff = newBlock(new BlockMultiLamp(blockStartId+10, false, true), "blockMultiLampBarOff", "Caged Multilamp", CreativeTabs.tabBlock);
         blockMultiLampBarOn = newBlock(new BlockMultiLamp(blockStartId+11, true, true), "blockMultiLampBarOn", "Caged Multilamp", null);
+
+
     }
 
     public static Block newBlock(Block block, String unlocalizedName, String name) {
