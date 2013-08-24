@@ -2,10 +2,13 @@ package com.kelmai.luma;
 
 import com.kelmai.luma.blocks.BlockLumaLamp;
 import com.kelmai.luma.blocks.BlockMultiLamp;
+import com.kelmai.luma.blocks.BlockTutBox;
+import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
 import com.kelmai.luma.items.ItemBlockLumaLamp;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -36,6 +39,8 @@ public class BlockManager {
     public static Block blockMultiLampBarOn;
     public static Block blockMultiLampBarOff;
 
+    public static Block TutBox;
+
     public static void makeBlocks() {
         blockLumaLampOff = newColoredBlock(new BlockLumaLamp(blockStartId, false, false, false), "blockLumaLampOff", lumaLampNames, CreativeTabs.tabBlock);
         blockLumaLampOn  = newColoredBlock(new BlockLumaLamp(blockStartId+1, true, false, false), "blockLumaLampOn", lumaLampNames, null);
@@ -55,6 +60,11 @@ public class BlockManager {
         blockMultiLampBarOff = newBlock(new BlockMultiLamp(blockStartId+10, false, true), "blockMultiLampBarOff", "Caged Multilamp", CreativeTabs.tabBlock);
         blockMultiLampBarOn = newBlock(new BlockMultiLamp(blockStartId+11, true, true), "blockMultiLampBarOn", "Caged Multilamp", null);
 
+        TutBox = new BlockTutBox(blockStartId+12, Material.rock, "blockTutBox", CreativeTabs.tabBlock);
+        GameRegistry.registerBlock(TutBox, "blockTutBox");
+        GameRegistry.registerTileEntity(TileEntityTutBox.class, "tileEntityTutBox");
+
+        LanguageRegistry.addName(TutBox, "Tutorial Box");
 
     }
 
