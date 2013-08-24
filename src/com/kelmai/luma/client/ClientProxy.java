@@ -2,9 +2,9 @@ package com.kelmai.luma.client;
 
 import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.CommonProxy;
-import com.kelmai.luma.blocks.renderers.ItemTutBoxRenderer;
-import com.kelmai.luma.blocks.renderers.TileEntityTutBoxRenderer;
-import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
+import com.kelmai.luma.blocksbb.renderers.ItemTutBoxRenderer;
+import com.kelmai.luma.blocksbb.renderers.TileEntityTutBoxRenderer;
+import com.kelmai.luma.blocksbb.tileEntities.TileEntityTutBox;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraftforge.client.MinecraftForgeClient;
 

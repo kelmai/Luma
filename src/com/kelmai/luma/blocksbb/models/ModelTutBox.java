@@ -1,10 +1,9 @@
-package com.kelmai.luma.blocks.models;
+package com.kelmai.luma.blocksbb.models;
 
 import com.kelmai.luma.TextureManager;
-import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
+import com.kelmai.luma.blocksbb.tileEntities.TileEntityTutBox;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;

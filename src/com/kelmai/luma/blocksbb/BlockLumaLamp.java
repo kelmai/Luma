@@ -1,4 +1,4 @@
-package com.kelmai.luma.blocks;
+package com.kelmai.luma.blocksbb;
 
 import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.Luma;

@@ -1,7 +1,7 @@
-package com.kelmai.luma.blocks.renderers;
+package com.kelmai.luma.blocksbb.renderers;
 
-import com.kelmai.luma.blocks.models.ModelTutBox;
-import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
+import com.kelmai.luma.blocksbb.models.ModelTutBox;
+import com.kelmai.luma.blocksbb.tileEntities.TileEntityTutBox;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
