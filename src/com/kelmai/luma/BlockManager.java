@@ -1,9 +1,9 @@
 package com.kelmai.luma;
 
-import com.kelmai.luma.blocks.BlockLumaLamp;
-import com.kelmai.luma.blocks.BlockMultiLamp;
-import com.kelmai.luma.blocks.BlockTutBox;
-import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
+import com.kelmai.luma.blocksbb.BlockLumaLamp;
+import com.kelmai.luma.blocksbb.BlockMultiLamp;
+import com.kelmai.luma.blocksbb.BlockTutBox;
+import com.kelmai.luma.blocksbb.tileEntities.TileEntityTutBox;
 import com.kelmai.luma.items.ItemBlockLumaLamp;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
