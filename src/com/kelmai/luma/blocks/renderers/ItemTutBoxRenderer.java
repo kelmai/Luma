@@ -1,7 +1,7 @@
-package com.kelmai.luma.blocksbb.renderers;
+package com.kelmai.luma.blocks.renderers;
 
 import com.kelmai.luma.TextureManager;
-import com.kelmai.luma.blocksbb.models.ModelTutBox;
+import com.kelmai.luma.blocks.models.ModelTutBox;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;

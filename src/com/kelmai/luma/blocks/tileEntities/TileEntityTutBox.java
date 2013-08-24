@@ -1,4 +1,4 @@
-package com.kelmai.luma.blocksbb.tileEntities;
+package com.kelmai.luma.blocks.tileEntities;
 
 import net.minecraft.tileentity.TileEntity;
 
