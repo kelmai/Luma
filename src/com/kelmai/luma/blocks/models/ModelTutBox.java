@@ -1,7 +1,7 @@
-package com.kelmai.luma.blocksbb.models;
+package com.kelmai.luma.blocks.models;
 
 import com.kelmai.luma.TextureManager;
-import com.kelmai.luma.blocksbb.tileEntities.TileEntityTutBox;
+import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.client.model.AdvancedModelLoader;

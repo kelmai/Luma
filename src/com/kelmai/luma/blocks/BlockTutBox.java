@@ -1,6 +1,6 @@
-package com.kelmai.luma.blocksbb;
+package com.kelmai.luma.blocks;
 
-import com.kelmai.luma.blocksbb.tileEntities.TileEntityTutBox;
+import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
