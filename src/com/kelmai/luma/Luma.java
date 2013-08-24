@@ -45,23 +45,22 @@ public class Luma {
 
     public static CommonProxy proxy;
 
-    public final static Block TutBox = new BlockTutBox(2020);
+
 
     @EventHandler
     public void load(FMLInitializationEvent event) {
 
         ConfigManager.initConfiguration(event);
 
+
+        TextureManager.makeTextures();
         ItemManager.makeItems();
         BlockManager.makeBlocks();
 
 
         RecipeManager.makeRecipes();
 
-        GameRegistry.registerBlock(TutBox, "blockTutBox");
-        GameRegistry.registerTileEntity(TileEntityTutBox.class, "tileEntityTutBox");
 
-        LanguageRegistry.addName(TutBox, "Tutorial Box");
 
         proxy.registerRenderers();
     }

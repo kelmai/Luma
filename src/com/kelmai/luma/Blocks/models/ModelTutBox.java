@@ -1,16 +1,13 @@
 package com.kelmai.luma.blocks.models;
 
-import com.kelmai.luma.Luma;
+import com.kelmai.luma.TextureManager;
 import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
-import sun.java2d.pipe.RenderingEngine;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +19,6 @@ import sun.java2d.pipe.RenderingEngine;
 
 public class ModelTutBox extends ModelBase {
     private IModelCustom modelTutBox;
-    private ResourceLocation theTexture;
 
     public ModelTutBox() {
         modelTutBox = AdvancedModelLoader.loadModel("/assets/luma/models/TutBox.obj");
@@ -41,11 +37,10 @@ public class ModelTutBox extends ModelBase {
 
         // Scale our object to about half-size in all directions (the OBJ file is a little large)
         GL11.glScalef(0.5f, 0.5f, 0.5f);
-
-        theTexture = new ResourceLocation(Luma.modID, "/assets/luma/textures/models/TutBox.png");
+        GL11.glRotatef(90f, 90f, 1f, 0f);
 
         //FMLClientHandler.instance().getClient().renderEngine.bindTexture("/mods/OBJTutorial/textures/models/TutBox.png");
-        Minecraft.getMinecraft().renderEngine.func_110577_a(theTexture);
+        Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureTutBlock);
 
         // Render the object, using modelTutBox.renderAll();
         this.render();

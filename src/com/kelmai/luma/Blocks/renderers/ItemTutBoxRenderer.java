@@ -1,14 +1,12 @@
 package com.kelmai.luma.blocks.renderers;
 
-import com.kelmai.luma.Luma;
+import com.kelmai.luma.TextureManager;
 import com.kelmai.luma.blocks.models.ModelTutBox;
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import sun.dc.DuctusRenderingEngine;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,7 +17,7 @@ import sun.dc.DuctusRenderingEngine;
 public class ItemTutBoxRenderer implements IItemRenderer {
 
     private ModelTutBox modelTutBox;
-    private ResourceLocation theTexture;
+
 
     public ItemTutBoxRenderer() {
         modelTutBox = new ModelTutBox();
@@ -45,7 +43,7 @@ public class ItemTutBoxRenderer implements IItemRenderer {
             }
 
             case EQUIPPED:{
-                renderTutBox(0f, 1f, 1f, 0.5f);
+                renderTutBox(0f, 0f, 0f, 0.5f);
                 return;
             }
 
@@ -54,6 +52,10 @@ public class ItemTutBoxRenderer implements IItemRenderer {
                 return;
             }
 
+            case EQUIPPED_FIRST_PERSON:{
+                renderTutBox(0f, 1f, 1f, 0.5f);
+                return;
+            }
             default:return;
         }
     }
@@ -68,10 +70,10 @@ public class ItemTutBoxRenderer implements IItemRenderer {
         GL11.glScalef(scale, scale, scale);
         GL11.glRotatef(180f, 0f, 1f, 0f);
 
-        theTexture = new ResourceLocation(Luma.modID, "/assets/luma/textures/models/TutBox.png");
+
 
         //FMLClientHandler.instance().getClient().renderEngine.bindTexture("/mods/OBJTutorial/textures/models/TutBox.png");
-        Minecraft.getMinecraft().renderEngine.func_110577_a(theTexture);
+        Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureTutBlock2);
         modelTutBox.render();
 
         // Re-enable Lighting Calculations
