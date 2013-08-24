@@ -8,54 +8,26 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockTutBox extends Block
+public class BlockTutBox extends BlockCustom
 {
-	public BlockTutBox(int id)
-	{
-		super(id, Material.rock);
-		
-		setUnlocalizedName("blockTutBox");
+	public BlockTutBox(int id, Material material, String unlocalizedName, CreativeTabs creativeTab) {
+		super(id, material, unlocalizedName, creativeTab);
 		setHardness(5f);
-		setCreativeTab(CreativeTabs.tabBlock);
 	}
+
 	
 	@Override
-	public boolean hasTileEntity(int metadata)
-	{
-		return true;
-	}
-	
-	@Override
-	public boolean renderAsNormalBlock()
-	{
-		return false;
-	}
-	
-	@Override
-	public boolean isOpaqueCube()
-	{
-		return false;
-	}
-	
-	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer playerEntity, int par6, float par7, float par8, float par9)
-	{
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer playerEntity, int par6, float par7, float par8, float par9) {
 		if(playerEntity.isSneaking())
 			return false;
 		
-		playerEntity.setEntityHealth(0);
+		//playerEntity.setEntityHealth(0);
 		return true;
 	}
 	
 	@Override
-	public TileEntity createTileEntity(World world, int metadata)
-	{
+	public TileEntity createTileEntity(World world, int metadata) {
 		return new TileEntityTutBox();
 	}
-	
-	@Override
-	public int getRenderType()
-	{
-		return -1;
-	}
+
 }

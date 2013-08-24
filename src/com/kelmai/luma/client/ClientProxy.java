@@ -1,5 +1,6 @@
 package com.kelmai.luma.client;
 
+import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.CommonProxy;
 import com.kelmai.luma.blocks.renderers.ItemTutBoxRenderer;
 import com.kelmai.luma.blocks.renderers.TileEntityTutBoxRenderer;
@@ -12,7 +13,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderers() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTutBox.class, new TileEntityTutBoxRenderer());
-        MinecraftForgeClient.registerItemRenderer(2020, new ItemTutBoxRenderer());
+        MinecraftForgeClient.registerItemRenderer(BlockManager.TutBox.blockID, new ItemTutBoxRenderer());
     }
         
 }
