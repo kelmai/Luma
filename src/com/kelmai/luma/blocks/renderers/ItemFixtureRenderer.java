@@ -37,22 +37,22 @@ public class ItemFixtureRenderer implements IItemRenderer {
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
         switch(type) {
             case ENTITY:{
-                renderTutBox(0f, 0f, 0f, 0.5f);
+                renderTutBox(0f, 0f, 0f, 1f);
                 return;
             }
 
             case EQUIPPED:{
-                renderTutBox(0f, 0f, 0f, 0.5f);
+                renderTutBox(0f, 0f, 0f, 1f);
                 return;
             }
 
             case INVENTORY:{
-                renderTutBox(0f, 0f, 0f, 0.5f);
+                renderTutBox(0f, 0f, 0f, 1f);
                 return;
             }
 
             case EQUIPPED_FIRST_PERSON:{
-                renderTutBox(0f, 1f, 1f, 0.5f);
+                renderTutBox(0f, 1f, 1f, 1f);
                 return;
             }
             default:return;

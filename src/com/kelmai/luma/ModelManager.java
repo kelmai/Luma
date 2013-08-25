@@ -23,7 +23,8 @@ public class ModelManager {
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0f, (float) y + 0f, (float) z + 0f);
         GL11.glScalef(1f, 1f, 1f);
-        //GL11.glRotatef(0f, 0f, 0f, 0f);
+        // angle, x, y, z
+        //GL11.glRotatef(90f, 1f, 0f, 0f);
         Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureTutBlock);
         model.renderAll();
         GL11.glPopMatrix();
