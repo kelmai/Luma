@@ -48,6 +48,7 @@ public class Luma {
 
 
         TextureManager.makeTextures();
+        ModelManager.makeModels();
         ItemManager.makeItems();
         BlockManager.makeBlocks();
 
