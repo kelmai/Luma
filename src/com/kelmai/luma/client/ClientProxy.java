@@ -2,9 +2,9 @@ package com.kelmai.luma.client;
 
 import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.CommonProxy;
-import com.kelmai.luma.blocks.renderers.ItemTutBoxRenderer;
-import com.kelmai.luma.blocks.renderers.TileEntityTutBoxRenderer;
-import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
+import com.kelmai.luma.blocks.renderers.ItemFixtureRenderer;
+import com.kelmai.luma.blocks.renderers.TileEntityFixtureRenderer;
+import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraftforge.client.MinecraftForgeClient;
 
@@ -12,8 +12,8 @@ public class ClientProxy extends CommonProxy {
         
     @Override
     public void registerRenderers() {
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTutBox.class, new TileEntityTutBoxRenderer());
-        MinecraftForgeClient.registerItemRenderer(BlockManager.TutBox.blockID, new ItemTutBoxRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFixture.class, new TileEntityFixtureRenderer());
+        MinecraftForgeClient.registerItemRenderer(BlockManager.blockFixture.blockID, new ItemFixtureRenderer());
     }
         
 }

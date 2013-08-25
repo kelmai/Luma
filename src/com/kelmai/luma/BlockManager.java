@@ -1,9 +1,9 @@
 package com.kelmai.luma;
 
+import com.kelmai.luma.blocks.BlockFixture;
 import com.kelmai.luma.blocks.BlockLumaLamp;
 import com.kelmai.luma.blocks.BlockMultiLamp;
-import com.kelmai.luma.blocks.BlockTutBox;
-import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
+import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import com.kelmai.luma.items.ItemBlockLumaLamp;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -39,7 +39,7 @@ public class BlockManager {
     public static Block blockMultiLampBarOn;
     public static Block blockMultiLampBarOff;
 
-    public static Block TutBox;
+    public static Block blockFixture;
 
     public static void makeBlocks() {
         blockLumaLampOff = newColoredBlock(new BlockLumaLamp(blockStartId, false, false, false), "blockLumaLampOff", lumaLampNames, CreativeTabs.tabBlock);
@@ -60,11 +60,11 @@ public class BlockManager {
         blockMultiLampBarOff = newBlock(new BlockMultiLamp(blockStartId+10, false, true), "blockMultiLampBarOff", "Caged Multilamp", CreativeTabs.tabBlock);
         blockMultiLampBarOn = newBlock(new BlockMultiLamp(blockStartId+11, true, true), "blockMultiLampBarOn", "Caged Multilamp", null);
 
-        TutBox = new BlockTutBox(blockStartId+12, Material.rock, "blockTutBox", CreativeTabs.tabBlock);
-        GameRegistry.registerBlock(TutBox, "blockTutBox");
-        GameRegistry.registerTileEntity(TileEntityTutBox.class, "tileEntityTutBox");
+        blockFixture = new BlockFixture(blockStartId+12, Material.rock, "blockFixture", CreativeTabs.tabBlock);
+        GameRegistry.registerBlock(blockFixture, "blockLumaFixture");
+        GameRegistry.registerTileEntity(TileEntityFixture.class, "tileEntityFixture");
 
-        LanguageRegistry.addName(TutBox, "Tutorial Box");
+        LanguageRegistry.addName(blockFixture, "Luma Fixture");
 
     }
 

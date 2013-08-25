@@ -1,7 +1,6 @@
 package com.kelmai.luma.blocks.renderers;
 
-import com.kelmai.luma.blocks.models.ModelTutBox;
-import com.kelmai.luma.blocks.tileEntities.TileEntityTutBox;
+import com.kelmai.luma.ModelManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
@@ -11,12 +10,10 @@ import net.minecraft.tileentity.TileEntity;
  * Date: 21.08.13
  * Time: 21:06
  */
-public class TileEntityTutBoxRenderer extends TileEntitySpecialRenderer
-{
-    private ModelTutBox modelTutBox = new ModelTutBox();
+public class TileEntityFixtureRenderer extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
-        modelTutBox.render((TileEntityTutBox)tileEntity, x, y, z);
+        ModelManager.render(ModelManager.modelFixture, x, y, z);
     }
 }

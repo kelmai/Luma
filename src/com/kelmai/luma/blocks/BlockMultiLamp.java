@@ -89,11 +89,11 @@ public class BlockMultiLamp extends Block {
                     int blockID = this.bars ? BlockManager.blockMultiLampBarOff.blockID : BlockManager.blockMultiLampOff.blockID;
                     par1World.setBlock(par2, par3, par4, blockID, 0, 2);
                 }
-                par1World.setBlockMetadataWithNotify(par2, par3, par4,  par1World.getStrongestIndirectPower(par2, par3, par4), 2);
+                par1World.setBlockMetadataWithNotify(par2, par3, par4,  par1World.getBlockPowerInput(par2, par3, par4), 2);
             } else {
                 if (par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
                     int blockID = this.bars ? BlockManager.blockMultiLampBarOn.blockID : BlockManager.blockMultiLampOn.blockID;
-                    par1World.setBlock(par2, par3, par4, blockID,  par1World.getStrongestIndirectPower(par2, par3, par4), 2);
+                    par1World.setBlock(par2, par3, par4, blockID,  par1World.getBlockPowerInput(par2, par3, par4), 2);
                 }
             }
         }
