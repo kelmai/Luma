@@ -61,6 +61,7 @@ public class BlockManager {
         blockMultiLampBarOn = newBlock(new BlockMultiLamp(blockStartId+11, true, true), "blockMultiLampBarOn", "Caged Multilamp", null);
 
         blockFixture = new BlockFixture(blockStartId+12, Material.rock, "blockFixture", CreativeTabs.tabBlock);
+
         GameRegistry.registerBlock(blockFixture, "blockLumaFixture");
         GameRegistry.registerTileEntity(TileEntityFixture.class, "tileEntityFixture");
 

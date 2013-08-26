@@ -72,7 +72,7 @@ public class ItemFixtureRenderer implements IItemRenderer {
 
 
         //FMLClientHandler.instance().getClient().renderEngine.bindTexture("/mods/OBJTutorial/textures/models/TutBox.png");
-        Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureTutBlock);
+        Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixture);
         ModelManager.modelFixture.renderAll();
 
         // Re-enable Lighting Calculations

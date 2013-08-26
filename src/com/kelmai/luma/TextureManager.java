@@ -9,11 +9,9 @@ import net.minecraft.util.ResourceLocation;
  * Time: 22:44
  */
 public class TextureManager {
-    public static ResourceLocation textureTutBlock;
-    public static ResourceLocation textureTutBlock2;
+    public static ResourceLocation textureFixture;
 
     public static void makeTextures() {
-        textureTutBlock = new ResourceLocation("luma:textures/models/tex_fixture.png");
-        //textureTutBlock2 = new ResourceLocation("luma:textures/models/TutBox.png");
+        textureFixture = new ResourceLocation("luma:textures/models/tex_fixture.png");
     }
 }
