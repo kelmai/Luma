@@ -2,6 +2,7 @@ package com.kelmai.luma.blocks;
 
 import com.kelmai.luma.Luma;
 import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -29,7 +31,43 @@ public class BlockFixture extends BlockCustom
                             0.875F,  0.4375F,   0.875F);
 	}
 
-	
+    /**
+     * Updates the blocks bounds based on its current state. Args: world, x, y, z
+     */
+    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    {
+        int l = par1IBlockAccess.getBlockMetadata(par2, par3, par4) & 7;
+
+        switch (l) {
+            case 1:
+                this.setBlockBounds(0.0F,  0.125F,    0.125F,
+                                    0.4375F,  0.875F,    0.875F);
+                break;
+            case 2:
+                this.setBlockBounds(0.5625F,  0.125F,      0.125F,
+                                    1.0F,  0.875F,   0.875F);
+                break;
+            case 3:
+                this.setBlockBounds(0.125F,  0.125F,      0.0F,
+                                    0.875F,  0.875F,   0.4375F);
+                break;
+            case 4:
+                this.setBlockBounds(0.125F,  0.125F,      0.5625F,
+                                    0.875F,  0.875F,   1.0F);
+                break;
+            case 5:
+                this.setBlockBounds(0.125F,  0.0F,      0.125F,
+                                    0.875F,  0.4375F,   0.875F);
+                break;
+            default:
+                this.setBlockBounds(0.125F,  0.5625F,      0.125F,
+                                    0.875F,  1.0F,   0.875F);
+                break;
+
+        }
+    }
+
+
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer playerEntity, int par6, float par7, float par8, float par9) {
 		if(playerEntity.isSneaking())
@@ -42,7 +80,9 @@ public class BlockFixture extends BlockCustom
 	
 	@Override
 	public TileEntity createTileEntity(World world, int metadata) {
-		return new TileEntityFixture();
+        TileEntity te =  new TileEntityFixture();
+        te.blockMetadata = metadata;
+		return te;
 	}
 
     /**
@@ -73,137 +113,36 @@ public class BlockFixture extends BlockCustom
     /**
      * Called when a block is placed using its ItemBlock. Args: World, X, Y, Z, side, hitX, hitY, hitZ, block metadata
      */
-    public int onBlockPlaced(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9) {
-
-        int j1 = par9 & 8;
-        int k1 = par9 & 7;
+    public int onBlockPlaced(World par1World, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
+        int j1 = metadata & 8;
         byte b0 = -1;
-
-        if (par5 == 0 && par1World.isBlockSolidOnSide(par2, par3 + 1, par4, DOWN)) {
-            b0 = 0;
-        }
-
-        if (par5 == 1 && par1World.isBlockSolidOnSide(par2, par3 - 1, par4, UP)) {
-            b0 = 5;
-        }
-
-        if (par5 == 2 && par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH)) {
-            b0 = 4;
-        }
-
-        if (par5 == 3 && par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH)) {
-            b0 = 3;
-        }
-
-        if (par5 == 4 && par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST)) {
-            b0 = 2;
-        }
-
-        if (par5 == 5 && par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST)) {
-            b0 = 1;
-        }
-
+        if (side == 0 && par1World.isBlockSolidOnSide(x, y + 1, z, DOWN)) { b0 = 0; }
+        if (side == 1 && par1World.isBlockSolidOnSide(x, y - 1, z, UP)) { b0 = 5; }
+        if (side == 2 && par1World.isBlockSolidOnSide(x, y, z + 1, NORTH)) { b0 = 4; }
+        if (side == 3 && par1World.isBlockSolidOnSide(x, y, z - 1, SOUTH)) { b0 = 3; }
+        if (side == 4 && par1World.isBlockSolidOnSide(x + 1, y, z, WEST)) { b0 = 2; }
+        if (side == 5 && par1World.isBlockSolidOnSide(x - 1, y, z, EAST)) { b0 = 1; }
         return b0 + j1;
     }
 
-    /**
-     * Called when the block is placed in the world.
-     */
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
-        int l = par1World.getBlockMetadata(par2, par3, par4);
-        int i1 = l & 7;
-        int j1 = l & 8;
-
-        if (i1 == invertMetadata(1)) {
-            if ((MathHelper.floor_double((double) (par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 1) == 0) {
-                par1World.setBlockMetadataWithNotify(par2, par3, par4, 5 | j1, 2);
-            } else {
-                par1World.setBlockMetadataWithNotify(par2, par3, par4, 6 | j1, 2);
-            }
-        } else if (i1 == invertMetadata(0)) {
-            if ((MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 1) == 0) {
-                par1World.setBlockMetadataWithNotify(par2, par3, par4, 7 | j1, 2);
-            } else {
-                par1World.setBlockMetadataWithNotify(par2, par3, par4, 0 | j1, 2);
-            }
-        }
-    }
-
-    /**
-     * only used in ComponentScatteredFeatureJunglePyramid.addComponentParts"
-     */
-    public static int invertMetadata(int par0) {
-        switch (par0) {
-            case 0:
-                return 0;
-            case 1:
-                return 5;
-            case 2:
-                return 4;
-            case 3:
-                return 3;
-            case 4:
-                return 2;
-            case 5:
-                return 1;
-            default:
-                return -1;
-        }
-    }
 
     /**
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor blockID
      */
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
-    {
-        if (this.checkIfAttachedToBlock(par1World, par2, par3, par4))
-        {
+    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+        if (this.checkIfAttachedToBlock(par1World, par2, par3, par4)) {
             int i1 = par1World.getBlockMetadata(par2, par3, par4) & 7;
             boolean flag = false;
-
-            if (!par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST) && i1 == 1)
-            {
-                flag = true;
-            }
-
-            if (!par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST) && i1 == 2)
-            {
-                flag = true;
-            }
-
-            if (!par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH) && i1 == 3)
-            {
-                flag = true;
-            }
-
-            if (!par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH) && i1 == 4)
-            {
-                flag = true;
-            }
-
-            if (!par1World.isBlockSolidOnSide(par2, par3 - 1, par4, UP) && i1 == 5)
-            {
-                flag = true;
-            }
-
-            if (!par1World.isBlockSolidOnSide(par2, par3 - 1, par4, UP) && i1 == 6)
-            {
-                flag = true;
-            }
-
-            if (!par1World.isBlockSolidOnSide(par2, par3 + 1, par4, DOWN) && i1 == 0)
-            {
-                flag = true;
-            }
-
-            if (!par1World.isBlockSolidOnSide(par2, par3 + 1, par4, DOWN) && i1 == 7)
-            {
-                flag = true;
-            }
-
-            if (flag)
-            {
+            if (!par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST) && i1 == 1) { flag = true; }
+            if (!par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST) && i1 == 2) { flag = true; }
+            if (!par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH) && i1 == 3) { flag = true; }
+            if (!par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH) && i1 == 4) { flag = true; }
+            if (!par1World.isBlockSolidOnSide(par2, par3 - 1, par4, UP) && i1 == 5) { flag = true; }
+            if (!par1World.isBlockSolidOnSide(par2, par3 - 1, par4, UP) && i1 == 6) { flag = true; }
+            if (!par1World.isBlockSolidOnSide(par2, par3 + 1, par4, DOWN) && i1 == 0) { flag = true; }
+            if (!par1World.isBlockSolidOnSide(par2, par3 + 1, par4, DOWN) && i1 == 7) { flag = true; }
+            if (flag) {
                 this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
                 par1World.setBlockToAir(par2, par3, par4);
             }
@@ -214,16 +153,12 @@ public class BlockFixture extends BlockCustom
      * Checks if the block is attached to another block. If it is not, it returns false and drops the block as an item.
      * If it is it returns true.
      */
-    private boolean checkIfAttachedToBlock(World par1World, int par2, int par3, int par4)
-    {
-        if (!this.canPlaceBlockAt(par1World, par2, par3, par4))
-        {
+    private boolean checkIfAttachedToBlock(World par1World, int par2, int par3, int par4) {
+        if (!this.canPlaceBlockAt(par1World, par2, par3, par4)) {
             this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
             par1World.setBlockToAir(par2, par3, par4);
             return false;
-        }
-        else
-        {
+        } else {
             return true;
         }
     }
@@ -232,8 +167,7 @@ public class BlockFixture extends BlockCustom
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-        this.blockIcon = par1IconRegister.registerIcon(Luma.modID + ":blockLumaLampOff_0");
+    public void registerIcons(IconRegister par1IconRegister) {
+        this.blockIcon = par1IconRegister.registerIcon(Luma.modID + ":blockLumaLampOn_0");
     }
 }

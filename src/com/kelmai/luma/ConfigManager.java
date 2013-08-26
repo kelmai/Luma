@@ -1,6 +1,6 @@
 package com.kelmai.luma;
 
-import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.Configuration;
 
 import java.io.File;
@@ -12,7 +12,7 @@ import java.io.File;
  * Time: 01:02
  */
 public class ConfigManager {
-    public static void initConfiguration(FMLInitializationEvent event) {
+    public static void initConfiguration(FMLPreInitializationEvent event) {
         Configuration config = new Configuration(new File("config/luma.cfg"));
         config.load();
 

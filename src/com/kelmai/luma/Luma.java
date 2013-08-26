@@ -1,10 +1,14 @@
 package com.kelmai.luma;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Created with IntelliJ IDEA. Tube Edition
@@ -40,23 +44,20 @@ public class Luma {
     public static CommonProxy proxy;
 
 
-
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        ConfigManager.initConfiguration(event);
+    }
     @EventHandler
     public void load(FMLInitializationEvent event) {
-
-        ConfigManager.initConfiguration(event);
-
-
-        TextureManager.makeTextures();
-        ModelManager.makeModels();
+        Side side = FMLCommonHandler.instance().getEffectiveSide();
+        if (side == Side.CLIENT) {
+            TextureManager.makeTextures();
+            ModelManager.makeModels();
+        }
         ItemManager.makeItems();
         BlockManager.makeBlocks();
-
-
         RecipeManager.makeRecipes();
-
-
-
         proxy.registerRenderers();
     }
 
