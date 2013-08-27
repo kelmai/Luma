@@ -15,16 +15,16 @@ import org.lwjgl.opengl.GL11;
  */
 public class ItemFixtureRenderer implements IItemRenderer {
 
+    private boolean bars;
+    private boolean inverted;
 
-
-
-    public ItemFixtureRenderer() {
-
+    public ItemFixtureRenderer(boolean bars, boolean inverted) {
+        this.inverted = inverted;
+        this.bars = bars;
     }
 
     @Override
-    public boolean handleRenderType(ItemStack item, ItemRenderType type)
-    {
+    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
         return true;
     }
 
@@ -63,18 +63,25 @@ public class ItemFixtureRenderer implements IItemRenderer {
     private void renderTutBox(float x, float y, float z, float scale) {
         GL11.glPushMatrix();
 
-        // Disable Lighting Calculations
-        GL11.glDisable(GL11.GL_LIGHTING);
-
         GL11.glTranslatef(x,  y,  z);
         GL11.glScalef(scale, scale, scale);
         GL11.glRotatef(180f, 0f, 1f, 0f);
 
-        Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOff);
+        if (this.bars) {
+            if (this.inverted) {
+                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOnBars);
+            } else {
+                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOffBars);
+            }
+        } else {
+            if (this.inverted) {
+                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOn);
+            } else {
+                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOff);
+            }
+        }
         ModelManager.modelFixture.renderAll();
 
-        // Re-enable Lighting Calculations
-        GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
     }
 }

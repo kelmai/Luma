@@ -41,7 +41,15 @@ public class BlockManager {
     public static Block blockMultiLampBarOff;
 
     public static Block blockFixtureOff;
+    public static Block blockFixtureOffBars;
     public static Block blockFixtureOn;
+    public static Block blockFixtureOnBars;
+
+
+    public static Block blockFixtureOffInv;
+    public static Block blockFixtureOffBarsInv;
+    public static Block blockFixtureOnInv;
+    public static Block blockFixtureOnBarsInv;
 
     public static void makeBlocks() {
         blockLumaLampOff = newColoredBlock(new BlockLumaLamp(blockStartId, false, false, false), "blockLumaLampOff", lumaLampNames, CreativeTabs.tabBlock);
@@ -63,13 +71,14 @@ public class BlockManager {
         blockMultiLampBarOn = newBlock(new BlockMultiLamp(blockStartId+11, true, true), "blockMultiLampBarOn", "Caged Multilamp", null);
 
         blockFixtureOff = newCustomBlock(new BlockFixture(blockStartId+12, Material.glass, CreativeTabs.tabBlock, false, false, false), TileEntityFixture.class, "lumaFixtureOff", "Luma Fixture");
-        blockFixtureOn = newCustomBlock(new BlockFixture(blockStartId+13, Material.glass, null, true, false, false), TileEntityFixture.class, "lumaFixtureOn", "Luma Fixture");
+        blockFixtureOffBars = newCustomBlock(new BlockFixture(blockStartId+13, Material.glass, CreativeTabs.tabBlock, false, false, true), TileEntityFixture.class, "lumaFixtureOffBars", "Caged Luma Fixture");
+        blockFixtureOn = newCustomBlock(new BlockFixture(blockStartId+14, Material.glass, null, true, false, false), TileEntityFixture.class, "lumaFixtureOn", "Luma Fixture");
+        blockFixtureOnBars = newCustomBlock(new BlockFixture(blockStartId+15, Material.glass, null, true, false, true), TileEntityFixture.class, "lumaFixtureOnBars", "Caged Luma Fixture");
 
-//        GameRegistry.registerBlock(blockFixture, "blockLumaFixture");
-//        GameRegistry.registerTileEntity(TileEntityFixture.class, "tileEntityFixture");
-//
-//        LanguageRegistry.addName(blockFixture, "Luma Fixture");
-
+        blockFixtureOffInv = newCustomBlock(new BlockFixture(blockStartId+16, Material.glass, CreativeTabs.tabBlock, false, true, false), TileEntityFixture.class, "lumaFixtureOffInv", "Inverted Luma Fixture");
+        blockFixtureOffBarsInv = newCustomBlock(new BlockFixture(blockStartId+17, Material.glass, CreativeTabs.tabBlock, false, true, true), TileEntityFixture.class, "lumaFixtureOffBarsInv", "Caged Inverted Luma Fixture");
+        blockFixtureOnInv = newCustomBlock(new BlockFixture(blockStartId+18, Material.glass, null, true, true, false), TileEntityFixture.class, "lumaFixtureOnInv", "Inverted Luma Fixture");
+        blockFixtureOnBarsInv = newCustomBlock(new BlockFixture(blockStartId+19, Material.glass, null, true, true, true), TileEntityFixture.class, "lumaFixtureOnBarsInv", "Caged Inverted Luma Fixture");
     }
 
     public static Block newBlock(Block block, String unlocalizedName, String name) {

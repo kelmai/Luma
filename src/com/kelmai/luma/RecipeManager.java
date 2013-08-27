@@ -31,7 +31,7 @@ public class RecipeManager {
                                                                                 'd', glass);
 
         // Chroma Stone
-        GameRegistry.addRecipe(new ItemStack(ItemManager.itemChromaStone),             "bcd",
+        GameRegistry.addRecipe(new ItemStack(ItemManager.itemChromaStone),      "bcd",
                                                                                 "eaf",
                                                                                 "ghi",
 
@@ -64,6 +64,42 @@ public class RecipeManager {
         // Caged Multilamp
         GameRegistry.addShapelessRecipe(new ItemStack(BlockManager.blockMultiLampBarOff),   new ItemStack(BlockManager.blockMultiLampOff),
                                                                                             bars);
+
+        // Luma Fixture
+        GameRegistry.addRecipe(new ItemStack(BlockManager.blockFixtureOff, 4, 0),  "   ",
+                                                                                " b ",
+                                                                                "aaa",
+
+                                                                                'a', new ItemStack(Block.stone),
+                                                                                'b', new ItemStack(BlockManager.blockLumaLampOff));
+
+        // Caged Luma Fixture
+        GameRegistry.addRecipe(new ItemStack(BlockManager.blockFixtureOffBars, 4, 0),  " c ",
+                                                                                    "cbc",
+                                                                                    "aaa",
+
+                                                                                    'a', new ItemStack(Block.stone),
+                                                                                    'b', new ItemStack(BlockManager.blockLumaLampOff),
+                                                                                    'c', bars);
+
+        // Inverted Luma Fixture
+        GameRegistry.addRecipe(new ItemStack(BlockManager.blockFixtureOffInv, 4, 0),   "   ",
+                                                                                    " b ",
+                                                                                    "aca",
+
+                                                                                    'a', new ItemStack(Block.stone),
+                                                                                    'b', new ItemStack(BlockManager.blockLumaLampOff),
+                                                                                    'c', redstoneTorch);
+
+        // Caged Inverted Luma Fixture
+        GameRegistry.addRecipe(new ItemStack(BlockManager.blockFixtureOffBarsInv, 4, 0),   " c ",
+                                                                                        "cbc",
+                                                                                        "ada",
+
+                                                                                        'a', new ItemStack(Block.stone),
+                                                                                        'b', new ItemStack(BlockManager.blockLumaLampOff),
+                                                                                        'c', bars,
+                                                                                        'd', redstoneTorch);
 
         // Colored Luma Lamps
         makeDyedRecipes(BlockManager.blockLumaLampOff);

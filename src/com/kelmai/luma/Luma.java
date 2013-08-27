@@ -8,7 +8,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Created with IntelliJ IDEA. Tube Edition
@@ -30,7 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 // General Mod Setup
 @Mod(	        modid               = Luma.modID,
                 name                = "Luma",
-                version             = "0.1.1")
+                version             = "0.2.0")
 
 @NetworkMod (   clientSideRequired  = true,
                 serverSideRequired  = false)

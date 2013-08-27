@@ -13,7 +13,10 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderers() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFixture.class, new TileEntityFixtureRenderer());
-        MinecraftForgeClient.registerItemRenderer(BlockManager.blockFixtureOff.blockID, new ItemFixtureRenderer());
+        MinecraftForgeClient.registerItemRenderer(BlockManager.blockFixtureOff.blockID, new ItemFixtureRenderer(false, false));
+        MinecraftForgeClient.registerItemRenderer(BlockManager.blockFixtureOffBars.blockID, new ItemFixtureRenderer(true, false));
+        MinecraftForgeClient.registerItemRenderer(BlockManager.blockFixtureOffInv.blockID, new ItemFixtureRenderer(false, true));
+        MinecraftForgeClient.registerItemRenderer(BlockManager.blockFixtureOffBarsInv.blockID, new ItemFixtureRenderer(true, true));
     }
         
 }
