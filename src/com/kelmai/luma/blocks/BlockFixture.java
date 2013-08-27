@@ -1,8 +1,10 @@
 package com.kelmai.luma.blocks;
 
+import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.Luma;
 import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,20 +18,94 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
+import java.util.Random;
+
 import static net.minecraftforge.common.ForgeDirection.*;
 import static net.minecraftforge.common.ForgeDirection.EAST;
 
-public class BlockFixture extends BlockCustom
-{
-	public BlockFixture(int id, Material material, String unlocalizedName, CreativeTabs creativeTab) {
-		super(id, material, unlocalizedName, creativeTab);
-		setHardness(5f);
+public class BlockFixture extends BlockCustom {
+
+    public boolean powered;
+    public boolean bars;
+    public boolean inverted;
+
+	public BlockFixture(int id, Material material, CreativeTabs creativeTab, boolean powered, boolean inverted, boolean bars) {
+		super(id, material, creativeTab);
+
+        this.powered = powered;
+        this.bars = bars;
+        this.inverted = inverted;
+
+        if (this.bars) {
+            this.setHardness(3f);
+            this.setResistance(3f);
+        } else {
+            this.setHardness(.5f);
+            this.setResistance(.5f);
+        }
+
+        this.setStepSound(Block.soundGlassFootstep);
+
+        if (this.powered) {
+            if (!this.inverted) {
+                this.setLightValue(1.0F);
+            }
+        } else {
+            if (this.inverted) {
+                this.setLightValue(1.0F);
+            }
+        }
+
+
         /**
          * Sets the bounds of the block.  minX, minY, minZ, maxX, maxY, maxZ
          */
         this.setBlockBounds(0.125F,  0.0F,      0.125F,
                             0.875F,  0.4375F,   0.875F);
 	}
+
+    /**
+     * Returns the ID of the items to drop on destruction.
+     */
+    public int idDropped(int par1, Random par2Random, int par3) {
+        return this.bars ? BlockManager.blockFixtureOff.blockID : BlockManager.blockFixtureOff.blockID;
+    }
+
+    /**
+     * Called whenever the block is added into the world. Args: world, x, y, z
+     */
+    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
+        if (!par1World.isRemote) {
+            if (this.powered && !par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
+                par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, 1);
+            } else if (!this.powered && par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
+                int blockID;
+                if (!this.inverted) {
+                    blockID = this.bars ? BlockManager.blockFixtureOn.blockID : BlockManager.blockFixtureOn.blockID;
+                } else {
+                    blockID = this.bars ? BlockManager.blockFixtureOn.blockID : BlockManager.blockFixtureOn.blockID;
+                }
+                par1World.setBlock(par2, par3, par4, blockID, par1World.getBlockMetadata(par2, par3, par4), 2);
+            }
+        }
+    }
+
+
+
+    /**
+     * Ticks the block if it's been scheduled
+     */
+    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
+        if (!par1World.isRemote && this.powered && !par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
+            int blockID;
+            if (this.inverted) {
+                blockID = this.bars ? BlockManager.blockFixtureOff.blockID : BlockManager.blockFixtureOff.blockID;
+            } else {
+                blockID = this.bars ? BlockManager.blockFixtureOff.blockID : BlockManager.blockFixtureOff.blockID;
+            }
+            par1World.setBlock(par2, par3, par4, blockID, par1World.getBlockMetadata(par2, par3, par4), 2);
+        }
+    }
 
     /**
      * Updates the blocks bounds based on its current state. Args: world, x, y, z
@@ -131,6 +207,19 @@ public class BlockFixture extends BlockCustom
      * their own) Args: x, y, z, neighbor blockID
      */
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+        if (!par1World.isRemote) {
+            if (this.powered && !par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
+                par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, 1);
+            } else if (!this.powered && par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
+                int blockID;
+                if (this.inverted) {
+                    blockID = this.bars ? BlockManager.blockFixtureOn.blockID : BlockManager.blockFixtureOn.blockID;
+                } else {
+                    blockID = this.bars ? BlockManager.blockFixtureOn.blockID : BlockManager.blockFixtureOn.blockID;
+                }
+                par1World.setBlock(par2, par3, par4, blockID, par1World.getBlockMetadata(par2, par3, par4), 2);
+            }
+        }
         if (this.checkIfAttachedToBlock(par1World, par2, par3, par4)) {
             int i1 = par1World.getBlockMetadata(par2, par3, par4) & 7;
             boolean flag = false;
@@ -143,7 +232,7 @@ public class BlockFixture extends BlockCustom
             if (!par1World.isBlockSolidOnSide(par2, par3 + 1, par4, DOWN) && i1 == 0) { flag = true; }
             if (!par1World.isBlockSolidOnSide(par2, par3 + 1, par4, DOWN) && i1 == 7) { flag = true; }
             if (flag) {
-                this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
+                this.dropBlockAsItem(par1World, par2, par3, par4, 0, 0);
                 par1World.setBlockToAir(par2, par3, par4);
             }
         }

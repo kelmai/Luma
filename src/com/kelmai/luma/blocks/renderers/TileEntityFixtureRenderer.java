@@ -1,8 +1,10 @@
 package com.kelmai.luma.blocks.renderers;
 
+import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.Luma;
 import com.kelmai.luma.ModelManager;
 import com.kelmai.luma.TextureManager;
+import com.kelmai.luma.blocks.BlockFixture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -19,11 +21,13 @@ import org.lwjgl.opengl.GL11;
 public class TileEntityFixtureRenderer extends TileEntitySpecialRenderer {
 
     private static IModelCustom model;
-    private static ResourceLocation texture;
+    private static ResourceLocation textureOn;
+    private static ResourceLocation textureOff;
 
     public TileEntityFixtureRenderer() {
         model = ModelManager.modelFixture;
-        texture = TextureManager.textureFixture;
+        textureOff = TextureManager.textureFixtureOff;
+        textureOn = TextureManager.textureFixtureOn;
     }
 
     @Override
@@ -58,8 +62,12 @@ public class TileEntityFixtureRenderer extends TileEntitySpecialRenderer {
                 break;
 
         }
+        if (tileEntity.getBlockType().blockID == BlockManager.blockFixtureOff.blockID) {
+            Minecraft.getMinecraft().renderEngine.func_110577_a(textureOff);
+        } else {
+            Minecraft.getMinecraft().renderEngine.func_110577_a(textureOn);
+        }
 
-        Minecraft.getMinecraft().renderEngine.func_110577_a(texture);
         model.renderAll();
         GL11.glPopMatrix();
 
