@@ -3,17 +3,12 @@ package com.kelmai.luma.blocks;
 import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.Luma;
 import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -21,7 +16,6 @@ import net.minecraftforge.common.ForgeDirection;
 import java.util.Random;
 
 import static net.minecraftforge.common.ForgeDirection.*;
-import static net.minecraftforge.common.ForgeDirection.EAST;
 
 public class BlockFixture extends BlockCustom {
 
@@ -68,7 +62,11 @@ public class BlockFixture extends BlockCustom {
      * Returns the ID of the items to drop on destruction.
      */
     public int idDropped(int par1, Random par2Random, int par3) {
-        return this.bars ? BlockManager.blockFixtureOff.blockID : BlockManager.blockFixtureOff.blockID;
+        if (this.inverted) {
+            return this.bars ? BlockManager.blockFixtureOffBarsInv.blockID : BlockManager.blockFixtureOffInv.blockID;
+        } else {
+            return this.bars ? BlockManager.blockFixtureOffBars.blockID : BlockManager.blockFixtureOff.blockID;
+        }
     }
 
     /**
@@ -81,9 +79,9 @@ public class BlockFixture extends BlockCustom {
             } else if (!this.powered && par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
                 int blockID;
                 if (!this.inverted) {
-                    blockID = this.bars ? BlockManager.blockFixtureOn.blockID : BlockManager.blockFixtureOn.blockID;
+                    blockID = this.bars ? BlockManager.blockFixtureOnBars.blockID : BlockManager.blockFixtureOn.blockID;
                 } else {
-                    blockID = this.bars ? BlockManager.blockFixtureOn.blockID : BlockManager.blockFixtureOn.blockID;
+                    blockID = this.bars ? BlockManager.blockFixtureOnBarsInv.blockID : BlockManager.blockFixtureOnInv.blockID;
                 }
                 par1World.setBlock(par2, par3, par4, blockID, par1World.getBlockMetadata(par2, par3, par4), 2);
             }
@@ -99,9 +97,9 @@ public class BlockFixture extends BlockCustom {
         if (!par1World.isRemote && this.powered && !par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
             int blockID;
             if (this.inverted) {
-                blockID = this.bars ? BlockManager.blockFixtureOff.blockID : BlockManager.blockFixtureOff.blockID;
+                blockID = this.bars ? BlockManager.blockFixtureOffBarsInv.blockID : BlockManager.blockFixtureOffInv.blockID;
             } else {
-                blockID = this.bars ? BlockManager.blockFixtureOff.blockID : BlockManager.blockFixtureOff.blockID;
+                blockID = this.bars ? BlockManager.blockFixtureOffBars.blockID : BlockManager.blockFixtureOff.blockID;
             }
             par1World.setBlock(par2, par3, par4, blockID, par1World.getBlockMetadata(par2, par3, par4), 2);
         }
@@ -213,9 +211,9 @@ public class BlockFixture extends BlockCustom {
             } else if (!this.powered && par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
                 int blockID;
                 if (this.inverted) {
-                    blockID = this.bars ? BlockManager.blockFixtureOn.blockID : BlockManager.blockFixtureOn.blockID;
+                    blockID = this.bars ? BlockManager.blockFixtureOnBarsInv.blockID : BlockManager.blockFixtureOnInv.blockID;
                 } else {
-                    blockID = this.bars ? BlockManager.blockFixtureOn.blockID : BlockManager.blockFixtureOn.blockID;
+                    blockID = this.bars ? BlockManager.blockFixtureOnBars.blockID : BlockManager.blockFixtureOn.blockID;
                 }
                 par1World.setBlock(par2, par3, par4, blockID, par1World.getBlockMetadata(par2, par3, par4), 2);
             }
@@ -250,6 +248,10 @@ public class BlockFixture extends BlockCustom {
         } else {
             return true;
         }
+    }
+
+    public int damageDropped (int metadata) {
+        return 0;
     }
 
     /**

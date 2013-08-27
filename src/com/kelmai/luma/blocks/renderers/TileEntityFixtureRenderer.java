@@ -1,10 +1,8 @@
 package com.kelmai.luma.blocks.renderers;
 
 import com.kelmai.luma.BlockManager;
-import com.kelmai.luma.Luma;
 import com.kelmai.luma.ModelManager;
 import com.kelmai.luma.TextureManager;
-import com.kelmai.luma.blocks.BlockFixture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -22,12 +20,36 @@ public class TileEntityFixtureRenderer extends TileEntitySpecialRenderer {
 
     private static IModelCustom model;
     private static ResourceLocation textureOn;
+    private static ResourceLocation textureOnBars;
     private static ResourceLocation textureOff;
+    private static ResourceLocation textureOffBars;
+
+    private static int onID;
+    private static int onBarsID;
+    private static int offID;
+    private static int offBarsID;
+
+    private static int onInvID;
+    private static int onBarsInvID;
+    private static int offInvID;
+    private static int offBarsInvID;
 
     public TileEntityFixtureRenderer() {
         model = ModelManager.modelFixture;
         textureOff = TextureManager.textureFixtureOff;
+        textureOffBars = TextureManager.textureFixtureOffBars;
         textureOn = TextureManager.textureFixtureOn;
+        textureOnBars = TextureManager.textureFixtureOnBars;
+
+        onID = BlockManager.blockFixtureOn.blockID;
+        onBarsID = BlockManager.blockFixtureOnBars.blockID;
+        offID = BlockManager.blockFixtureOff.blockID;
+        offBarsID = BlockManager.blockFixtureOffBars.blockID;
+
+        onInvID = BlockManager.blockFixtureOnInv.blockID;
+        onBarsInvID = BlockManager.blockFixtureOnBarsInv.blockID;
+        offInvID = BlockManager.blockFixtureOffInv.blockID;
+        offBarsInvID = BlockManager.blockFixtureOffBarsInv.blockID;
     }
 
     @Override
@@ -62,13 +84,25 @@ public class TileEntityFixtureRenderer extends TileEntitySpecialRenderer {
                 break;
 
         }
-        if (tileEntity.getBlockType().blockID == BlockManager.blockFixtureOff.blockID) {
-            Minecraft.getMinecraft().renderEngine.func_110577_a(textureOff);
-        } else {
+
+        int curID = tileEntity.getBlockType().blockID;
+
+        if (curID == onID || curID == offInvID) {
+            GL11.glDisable(GL11.GL_LIGHTING);
+            //GL11.glDisable(GL11.GL_AMBIENT);
             Minecraft.getMinecraft().renderEngine.func_110577_a(textureOn);
+        } else if (curID == offID || curID == onInvID) {
+            Minecraft.getMinecraft().renderEngine.func_110577_a(textureOff);
+        } else if (curID == onBarsID || curID == offBarsInvID) {
+            //GL11.glDisable(GL11.GL_);
+            GL11.glDisable(GL11.GL_LIGHTING);
+            Minecraft.getMinecraft().renderEngine.func_110577_a(textureOnBars);
+        } else if (curID == offBarsID || curID == onBarsInvID) {
+            Minecraft.getMinecraft().renderEngine.func_110577_a(textureOffBars);
         }
 
         model.renderAll();
+        GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
 
     }
