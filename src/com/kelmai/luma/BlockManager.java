@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
 /**
  * Created with IntelliJ IDEA.
@@ -39,7 +40,8 @@ public class BlockManager {
     public static Block blockMultiLampBarOn;
     public static Block blockMultiLampBarOff;
 
-    public static Block blockFixture;
+    public static Block blockFixtureOff;
+    public static Block blockFixtureOn;
 
     public static void makeBlocks() {
         blockLumaLampOff = newColoredBlock(new BlockLumaLamp(blockStartId, false, false, false), "blockLumaLampOff", lumaLampNames, CreativeTabs.tabBlock);
@@ -60,18 +62,21 @@ public class BlockManager {
         blockMultiLampBarOff = newBlock(new BlockMultiLamp(blockStartId+10, false, true), "blockMultiLampBarOff", "Caged Multilamp", CreativeTabs.tabBlock);
         blockMultiLampBarOn = newBlock(new BlockMultiLamp(blockStartId+11, true, true), "blockMultiLampBarOn", "Caged Multilamp", null);
 
-        blockFixture = new BlockFixture(blockStartId+12, Material.rock, "blockFixture", CreativeTabs.tabBlock);
+        blockFixtureOff = newCustomBlock(new BlockFixture(blockStartId+12, Material.glass, CreativeTabs.tabBlock, false, false, false), TileEntityFixture.class, "lumaFixtureOff", "Luma Fixture");
+        blockFixtureOn = newCustomBlock(new BlockFixture(blockStartId+13, Material.glass, null, true, false, false), TileEntityFixture.class, "lumaFixtureOn", "Luma Fixture");
 
-        GameRegistry.registerBlock(blockFixture, "blockLumaFixture");
-        GameRegistry.registerTileEntity(TileEntityFixture.class, "tileEntityFixture");
-
-        LanguageRegistry.addName(blockFixture, "Luma Fixture");
+//        GameRegistry.registerBlock(blockFixture, "blockLumaFixture");
+//        GameRegistry.registerTileEntity(TileEntityFixture.class, "tileEntityFixture");
+//
+//        LanguageRegistry.addName(blockFixture, "Luma Fixture");
 
     }
 
     public static Block newBlock(Block block, String unlocalizedName, String name) {
         return newBlock(block, unlocalizedName, name, CreativeTabs.tabBlock);
     }
+
+
 
     public static Block newBlock(Block block, String unlocalizedName, String name, CreativeTabs creativeTab) {
         block.setUnlocalizedName(unlocalizedName);
@@ -80,6 +85,16 @@ public class BlockManager {
         GameRegistry.registerBlock(block, Luma.modID + "_" + unlocalizedName);
         LanguageRegistry.addName(block, name);
         Luma.log("Block ID " + block.blockID + ": " + unlocalizedName);
+        return block;
+    }
+
+    public static Block newCustomBlock(Block block, Class<? extends TileEntity> tileEntityClass, String ulNamePart, String name) {
+        block.setUnlocalizedName("block"+ulNamePart);
+        GameRegistry.registerBlock(block, Luma.modID + "_block"+ulNamePart);
+        GameRegistry.registerTileEntity(tileEntityClass, Luma.modID + "_tileEntity"+ulNamePart);
+
+        LanguageRegistry.addName(block, name);
+
         return block;
     }
 

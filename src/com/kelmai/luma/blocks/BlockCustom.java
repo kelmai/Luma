@@ -12,10 +12,8 @@ import net.minecraft.creativetab.CreativeTabs;
  */
 public class BlockCustom  extends Block {
 
-    public BlockCustom(int id, Material material, String unlocalizedName, CreativeTabs creativeTab) {
+    public BlockCustom(int id, Material material, CreativeTabs creativeTab) {
         super(id, material);
-
-        this.setUnlocalizedName(unlocalizedName);
 
         if (creativeTab != null) {
             this.setCreativeTab(creativeTab);

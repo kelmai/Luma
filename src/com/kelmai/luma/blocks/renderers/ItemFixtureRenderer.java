@@ -42,12 +42,12 @@ public class ItemFixtureRenderer implements IItemRenderer {
             }
 
             case EQUIPPED:{
-                renderTutBox(0f, 0f, 0f, 1f);
+                renderTutBox(0f, 0f, 1.5f, 1.2f);
                 return;
             }
 
             case INVENTORY:{
-                renderTutBox(0f, 0f, 0f, 1f);
+                renderTutBox(0f, -.5f, 0f, 1.2f);
                 return;
             }
 
@@ -55,6 +55,7 @@ public class ItemFixtureRenderer implements IItemRenderer {
                 renderTutBox(0f, 1f, 1f, 1f);
                 return;
             }
+
             default:return;
         }
     }
@@ -69,10 +70,7 @@ public class ItemFixtureRenderer implements IItemRenderer {
         GL11.glScalef(scale, scale, scale);
         GL11.glRotatef(180f, 0f, 1f, 0f);
 
-
-
-        //FMLClientHandler.instance().getClient().renderEngine.bindTexture("/mods/OBJTutorial/textures/models/TutBox.png");
-        Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixture);
+        Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOff);
         ModelManager.modelFixture.renderAll();
 
         // Re-enable Lighting Calculations
