@@ -12,12 +12,8 @@ import net.minecraft.creativetab.CreativeTabs;
  */
 public class BlockCustom  extends Block {
 
-    public BlockCustom(int id, Material material, CreativeTabs creativeTab) {
+    public BlockCustom(int id, Material material) {
         super(id, material);
-
-        if (creativeTab != null) {
-            this.setCreativeTab(creativeTab);
-        }
     }
 
     /**

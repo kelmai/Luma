@@ -23,8 +23,8 @@ public class BlockFixture extends BlockCustom {
     public boolean bars;
     public boolean inverted;
 
-	public BlockFixture(int id, Material material, CreativeTabs creativeTab, boolean powered, boolean inverted, boolean bars) {
-		super(id, material, creativeTab);
+	public BlockFixture(int id, Material material, boolean powered, boolean inverted, boolean bars) {
+		super(id, material);
 
         this.powered = powered;
         this.bars = bars;

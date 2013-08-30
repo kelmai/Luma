@@ -1,5 +1,6 @@
 package com.kelmai.luma;
 
+import codechicken.nei.NEIActions;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -40,6 +41,8 @@ import net.minecraft.item.ItemStack;
 
 public class Luma {
     public static final String modID = "luma";
+    public static final String modName = "Luma";
+    public static final String modVersion = "0.2.0";
     public static Side side;
     public static CreativeTabs tab;
 
@@ -70,6 +73,8 @@ public class Luma {
         BlockManager.makeBlocks();
         RecipeManager.makeRecipes();
         proxy.registerRenderers();
+
+
     }
 
     public static void log(String str) {
