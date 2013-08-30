@@ -20,10 +20,10 @@ public class ItemManager {
     public static Item itemChromaStone;
 
     public static void makeItems() {
-        itemChromaStone = new ItemChromaStone(ItemManager.itemStartId).setCreativeTab(CreativeTabs.tabMisc).setUnlocalizedName("itemChromaStone");
+        itemChromaStone = new ItemChromaStone(ItemManager.itemStartId).setCreativeTab(Luma.tab).setUnlocalizedName("itemChromaStone");
         LanguageRegistry.addName(itemChromaStone, "Chroma Stone");
 
-        itemKelmaiDebug = new ItemKelmaiDebug(ItemManager.itemStartId+1).setCreativeTab(CreativeTabs.tabMisc).setUnlocalizedName("itemKelmaiDebug");
+        itemKelmaiDebug = new ItemKelmaiDebug(ItemManager.itemStartId+1).setCreativeTab(Luma.tab).setUnlocalizedName("itemKelmaiDebug");
         LanguageRegistry.addName(itemKelmaiDebug, "KelMai Debug Item");
     }
 }

@@ -52,37 +52,37 @@ public class BlockManager {
     public static Block blockFixtureOnBarsInv;
 
     public static void makeBlocks() {
-        blockLumaLampOff = newColoredBlock(new BlockLumaLamp(blockStartId, false, false, false), "blockLumaLampOff", lumaLampNames, CreativeTabs.tabBlock);
+        blockLumaLampOff = newColoredBlock(new BlockLumaLamp(blockStartId, false, false, false), "blockLumaLampOff", lumaLampNames, Luma.tab);
         blockLumaLampOn  = newColoredBlock(new BlockLumaLamp(blockStartId+1, true, false, false), "blockLumaLampOn", lumaLampNames, null);
 
-        blockLumaLampOnInv  = newColoredBlock(new BlockLumaLamp(blockStartId+2, false, false, true), "blockLumaLampOnInv", lumaLampNamesInv, CreativeTabs.tabBlock);
+        blockLumaLampOnInv  = newColoredBlock(new BlockLumaLamp(blockStartId+2, false, false, true), "blockLumaLampOnInv", lumaLampNamesInv, Luma.tab);
         blockLumaLampOffInv = newColoredBlock(new BlockLumaLamp(blockStartId+3, true, false, true), "blockLumaLampOffInv", lumaLampNamesInv, null);
 
-        blockLumaLampBarOff = newColoredBlock(new BlockLumaLamp(blockStartId+4, false, true, false), "blockLumaLampBarOff", lumaLampBarNames, CreativeTabs.tabBlock);
+        blockLumaLampBarOff = newColoredBlock(new BlockLumaLamp(blockStartId+4, false, true, false), "blockLumaLampBarOff", lumaLampBarNames, Luma.tab);
         blockLumaLampBarOn  = newColoredBlock(new BlockLumaLamp(blockStartId+5, true, true, false), "blockLumaLampBarOn", lumaLampBarNames, null);
 
-        blockLumaLampBarOnInv  = newColoredBlock(new BlockLumaLamp(blockStartId+6, false, true, true), "blockLumaLampBarOnInv", lumaLampBarNamesInv, CreativeTabs.tabBlock);
+        blockLumaLampBarOnInv  = newColoredBlock(new BlockLumaLamp(blockStartId+6, false, true, true), "blockLumaLampBarOnInv", lumaLampBarNamesInv, Luma.tab);
         blockLumaLampBarOffInv = newColoredBlock(new BlockLumaLamp(blockStartId+7, true, true, true), "blockLumaLampBarOffInv", lumaLampBarNamesInv, null);
 
-        blockMultiLampOff = newBlock(new BlockMultiLamp(blockStartId+8, false, false), "blockMultiLampOff", "Multilamp", CreativeTabs.tabBlock);
+        blockMultiLampOff = newBlock(new BlockMultiLamp(blockStartId+8, false, false), "blockMultiLampOff", "Multilamp", Luma.tab);
         blockMultiLampOn = newBlock(new BlockMultiLamp(blockStartId+9, true, false), "blockMultiLampOn", "Multilamp", null);
 
-        blockMultiLampBarOff = newBlock(new BlockMultiLamp(blockStartId+10, false, true), "blockMultiLampBarOff", "Caged Multilamp", CreativeTabs.tabBlock);
+        blockMultiLampBarOff = newBlock(new BlockMultiLamp(blockStartId+10, false, true), "blockMultiLampBarOff", "Caged Multilamp", Luma.tab);
         blockMultiLampBarOn = newBlock(new BlockMultiLamp(blockStartId+11, true, true), "blockMultiLampBarOn", "Caged Multilamp", null);
 
-        blockFixtureOff = newCustomBlock(new BlockFixture(blockStartId+12, Material.glass, CreativeTabs.tabBlock, false, false, false), TileEntityFixture.class, "lumaFixtureOff", "Luma Fixture");
-        blockFixtureOffBars = newCustomBlock(new BlockFixture(blockStartId+13, Material.glass, CreativeTabs.tabBlock, false, false, true), TileEntityFixture.class, "lumaFixtureOffBars", "Caged Luma Fixture");
+        blockFixtureOff = newCustomBlock(new BlockFixture(blockStartId+12, Material.glass, Luma.tab, false, false, false), TileEntityFixture.class, "lumaFixtureOff", "Luma Fixture");
+        blockFixtureOffBars = newCustomBlock(new BlockFixture(blockStartId+13, Material.glass, Luma.tab, false, false, true), TileEntityFixture.class, "lumaFixtureOffBars", "Caged Luma Fixture");
         blockFixtureOn = newCustomBlock(new BlockFixture(blockStartId+14, Material.glass, null, true, false, false), TileEntityFixture.class, "lumaFixtureOn", "Luma Fixture");
         blockFixtureOnBars = newCustomBlock(new BlockFixture(blockStartId+15, Material.glass, null, true, false, true), TileEntityFixture.class, "lumaFixtureOnBars", "Caged Luma Fixture");
 
-        blockFixtureOffInv = newCustomBlock(new BlockFixture(blockStartId+16, Material.glass, CreativeTabs.tabBlock, false, true, false), TileEntityFixture.class, "lumaFixtureOffInv", "Inverted Luma Fixture");
-        blockFixtureOffBarsInv = newCustomBlock(new BlockFixture(blockStartId+17, Material.glass, CreativeTabs.tabBlock, false, true, true), TileEntityFixture.class, "lumaFixtureOffBarsInv", "Caged Inverted Luma Fixture");
+        blockFixtureOffInv = newCustomBlock(new BlockFixture(blockStartId+16, Material.glass, Luma.tab, false, true, false), TileEntityFixture.class, "lumaFixtureOffInv", "Inverted Luma Fixture");
+        blockFixtureOffBarsInv = newCustomBlock(new BlockFixture(blockStartId+17, Material.glass, Luma.tab, false, true, true), TileEntityFixture.class, "lumaFixtureOffBarsInv", "Caged Inverted Luma Fixture");
         blockFixtureOnInv = newCustomBlock(new BlockFixture(blockStartId+18, Material.glass, null, true, true, false), TileEntityFixture.class, "lumaFixtureOnInv", "Inverted Luma Fixture");
         blockFixtureOnBarsInv = newCustomBlock(new BlockFixture(blockStartId+19, Material.glass, null, true, true, true), TileEntityFixture.class, "lumaFixtureOnBarsInv", "Caged Inverted Luma Fixture");
     }
 
     public static Block newBlock(Block block, String unlocalizedName, String name) {
-        return newBlock(block, unlocalizedName, name, CreativeTabs.tabBlock);
+        return newBlock(block, unlocalizedName, name, Luma.tab);
     }
 
 

@@ -7,7 +7,11 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 /**
  * Created with IntelliJ IDEA. Tube Edition
@@ -37,6 +41,7 @@ import cpw.mods.fml.relauncher.Side;
 public class Luma {
     public static final String modID = "luma";
     public static Side side;
+    public static CreativeTabs tab;
 
     @SidedProxy(clientSide="com.kelmai.luma.client.ClientProxy",
                 serverSide="com.kelmai.luma.CommonProxy")
@@ -47,6 +52,12 @@ public class Luma {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ConfigManager.initConfiguration(event);
+        tab = new CreativeTabs("tabLuma") {
+            public ItemStack getIconItemStack() {
+                return new ItemStack(ItemManager.itemChromaStone, 1, 0);
+            }
+        };
+        LanguageRegistry.instance().addStringLocalization("itemGroup.tabLuma", "en_US", "Luma");
     }
     @EventHandler
     public void load(FMLInitializationEvent event) {
