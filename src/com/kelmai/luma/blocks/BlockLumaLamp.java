@@ -2,6 +2,7 @@ package com.kelmai.luma.blocks;
 
 import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.Luma;
+import com.kelmai.luma.client.ClientProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -10,6 +11,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -64,7 +66,21 @@ public class BlockLumaLamp extends Block {
     }
 
 
+    public boolean renderAsNormalBlock(){
+        return true;
+    }
 
+    public int getRenderType(){
+        if ((this.inverted && !this.powered) || (!this.inverted && this.powered)  ) {
+            return ClientProxy.lampRenderType;
+        } else {
+            return 0;
+        }
+    }
+
+    public boolean isOpaqueCube() {
+        return true;
+    }
 
     /**
      * Called whenever the block is added into the world. Args: world, x, y, z
@@ -164,6 +180,8 @@ public class BlockLumaLamp extends Block {
     public Icon getIcon(int side, int metadata) {
         return this.iconArray[metadata];
     }
+
+
 
     @Override
     @SideOnly(Side.CLIENT)
