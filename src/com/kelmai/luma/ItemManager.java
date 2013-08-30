@@ -1,6 +1,7 @@
 package com.kelmai.luma;
 
 import com.kelmai.luma.items.ItemChromaStone;
+import com.kelmai.luma.items.ItemKelmaiDebug;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -15,10 +16,14 @@ public class ItemManager {
 
     public static int itemStartId;
 
+    public static Item itemKelmaiDebug;
     public static Item itemChromaStone;
 
     public static void makeItems() {
         itemChromaStone = new ItemChromaStone(ItemManager.itemStartId).setCreativeTab(CreativeTabs.tabMisc).setUnlocalizedName("itemChromaStone");
         LanguageRegistry.addName(itemChromaStone, "Chroma Stone");
+
+        itemKelmaiDebug = new ItemKelmaiDebug(ItemManager.itemStartId+1).setCreativeTab(CreativeTabs.tabMisc).setUnlocalizedName("itemKelmaiDebug");
+        LanguageRegistry.addName(itemKelmaiDebug, "KelMai Debug Item");
     }
 }

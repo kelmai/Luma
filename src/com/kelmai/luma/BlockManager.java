@@ -110,6 +110,7 @@ public class BlockManager {
     public static Block newColoredBlock(Block block, String unlocalizedName, String[] names, CreativeTabs creativeTab) {
         block.setUnlocalizedName(unlocalizedName);
         block.setCreativeTab(creativeTab);
+        LanguageRegistry.addName(block, names[0]);
         GameRegistry.registerBlock(block, ItemBlockLumaLamp.class, Luma.modID + "_" + unlocalizedName);
         for (int ix = 0; ix < 16; ix++) {
             ItemStack blockStack = new ItemStack(block, 1, ix);

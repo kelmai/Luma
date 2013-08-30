@@ -1,4 +1,4 @@
-package com.kelmai.luma.blocks.renderers;
+package com.kelmai.luma.renderers;
 
 import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.Luma;
@@ -105,8 +105,8 @@ public class BlockLampRenderer implements ISimpleBlockRenderingHandler {
 //        tess.addVertexWithUV(1, 1, 1, U, v);
 //
 //        tess.addTranslation(-x, -y, -z);
-        //renderer.renderBlockWithAmbientOcclusion(block, x, y, z, 1f, 1f, 1f);
-        renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1f, 0f, 0f);
+        renderer.renderBlockWithAmbientOcclusion(block, x, y, z, 1f, 1f, 1f);
+        //renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 0f, 0f, 0f);
         return true;
     }
 

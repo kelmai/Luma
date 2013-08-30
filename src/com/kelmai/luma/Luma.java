@@ -36,6 +36,7 @@ import cpw.mods.fml.relauncher.Side;
 
 public class Luma {
     public static final String modID = "luma";
+    public static Side side;
 
     @SidedProxy(clientSide="com.kelmai.luma.client.ClientProxy",
                 serverSide="com.kelmai.luma.CommonProxy")
@@ -49,7 +50,7 @@ public class Luma {
     }
     @EventHandler
     public void load(FMLInitializationEvent event) {
-        Side side = FMLCommonHandler.instance().getEffectiveSide();
+        side = FMLCommonHandler.instance().getEffectiveSide();
         if (side == Side.CLIENT) {
             TextureManager.makeTextures();
             ModelManager.makeModels();

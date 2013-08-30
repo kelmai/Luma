@@ -2,9 +2,9 @@ package com.kelmai.luma.client;
 
 import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.CommonProxy;
-import com.kelmai.luma.blocks.renderers.BlockLampRenderer;
-import com.kelmai.luma.blocks.renderers.ItemFixtureRenderer;
-import com.kelmai.luma.blocks.renderers.TileEntityFixtureRenderer;
+import com.kelmai.luma.renderers.BlockLampRenderer;
+import com.kelmai.luma.renderers.ItemFixtureRenderer;
+import com.kelmai.luma.renderers.TileEntityFixtureRenderer;
 import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
