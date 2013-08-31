@@ -2,6 +2,7 @@ package com.kelmai.luma.blocks;
 
 import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.Luma;
+import com.kelmai.luma.client.ClientProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -55,6 +56,24 @@ public class BlockMultiLamp extends Block {
 
     }
 
+
+    public boolean renderAsNormalBlock(){
+        return true;
+    }
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getRenderType(){
+        if (this.powered) {
+            return ClientProxy.lampRenderType;
+        } else {
+            return 0;
+        }
+    }
+
+    public boolean isOpaqueCube() {
+        return true;
+    }
+
     public int damageDropped (int metadata) {
         return this.powered ? metadata : 0;
     }
@@ -83,17 +102,25 @@ public class BlockMultiLamp extends Block {
      */
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
         if (!par1World.isRemote) {
-
+            Luma.log("aa");
             if (this.powered) {
                 if (!par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
                     int blockID = this.bars ? BlockManager.blockMultiLampBarOff.blockID : BlockManager.blockMultiLampOff.blockID;
                     par1World.setBlock(par2, par3, par4, blockID, 0, 2);
                 }
-                par1World.setBlockMetadataWithNotify(par2, par3, par4,  par1World.getBlockPowerInput(par2, par3, par4), 2);
+                int powerDirect =  par1World.getBlockPowerInput(par2, par3, par4);
+                int powerIndirect = par1World.getStrongestIndirectPower(par2, par3, par4);
+                int meta;
+                if (powerDirect == 0 && powerIndirect == 15) {
+                    meta = 15;
+                } else {
+                    meta = powerDirect;
+                }
+                par1World.setBlockMetadataWithNotify(par2, par3, par4,  meta, 2);
             } else {
-                if (par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
+                if (par1World.isBlockIndirectlyGettingPowered(par2, par3, par4) ) {
                     int blockID = this.bars ? BlockManager.blockMultiLampBarOn.blockID : BlockManager.blockMultiLampOn.blockID;
-                    par1World.setBlock(par2, par3, par4, blockID,  par1World.getBlockPowerInput(par2, par3, par4), 2);
+                    par1World.setBlock(par2, par3, par4, blockID, 0, 2);
                 }
             }
         }

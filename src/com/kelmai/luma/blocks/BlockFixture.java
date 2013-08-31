@@ -6,7 +6,6 @@ import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
@@ -23,8 +22,8 @@ public class BlockFixture extends BlockCustom {
     public boolean bars;
     public boolean inverted;
 
-	public BlockFixture(int id, Material material, CreativeTabs creativeTab, boolean powered, boolean inverted, boolean bars) {
-		super(id, material, creativeTab);
+	public BlockFixture(int id, Material material, boolean powered, boolean inverted, boolean bars) {
+		super(id, material);
 
         this.powered = powered;
         this.bars = bars;

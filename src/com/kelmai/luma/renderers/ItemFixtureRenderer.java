@@ -1,4 +1,4 @@
-package com.kelmai.luma.blocks.renderers;
+package com.kelmai.luma.renderers;
 
 import com.kelmai.luma.ModelManager;
 import com.kelmai.luma.TextureManager;
