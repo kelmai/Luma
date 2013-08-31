@@ -4,7 +4,7 @@
     "modid": "luma",
     "name": "Luma",
     "description": "Luma adds colored Luma Lamps and Multilamps which change color according to redstone power strength ",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "mcversion": "1.6.2",
     "url": "http://www.kelmai.com/luma",
     "updateUrl": "http://www.kelmai.com/luma",

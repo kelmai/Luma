@@ -32,7 +32,7 @@ import net.minecraft.item.ItemStack;
 // General Mod Setup
 @Mod(	        modid               = Luma.modID,
                 name                = "Luma",
-                version             = "0.2.0")
+                version             = "0.2.1")
 
 @NetworkMod (   clientSideRequired  = true,
                 serverSideRequired  = false)
@@ -40,7 +40,7 @@ import net.minecraft.item.ItemStack;
 public class Luma {
     public static final String modID = "luma";
     public static final String modName = "Luma";
-    public static final String modVersion = "0.2.0";
+    public static final String modVersion = "0.2.1";
     public static Side side;
     public static CreativeTabs tab;
 
