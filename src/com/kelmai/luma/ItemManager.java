@@ -3,7 +3,6 @@ package com.kelmai.luma;
 import com.kelmai.luma.items.ItemChromaStone;
 import com.kelmai.luma.items.ItemKelmaiDebug;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 /**

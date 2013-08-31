@@ -1,22 +1,14 @@
 package com.kelmai.luma.items;
 
 import com.kelmai.luma.Luma;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.MinecraftForge;
-
-import static net.minecraftforge.common.ForgeDirection.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -70,11 +62,17 @@ public class ItemKelmaiDebug extends Item {
 
             Block block = Block.blocksList[id];
 
+            int powerInd = world.getStrongestIndirectPower(x, y, z);
+            int power = world.getBlockPowerInput(x, y, z);
+
 
             entityPlayer.addChatMessage("§l=======[[ LUMA DEBUG OUTPUT ]]=======");
             entityPlayer.addChatMessage("§7x §f" + x + "  §7y §f" + y + "  §7z §f" + z);
             entityPlayer.addChatMessage(block.getLocalizedName() + " / " + block.getUnlocalizedName() + " " + id + ":" + metadata);
             entityPlayer.addChatMessage("§7side: §f" + sideOutput + " (" + side + ")");
+            if (world.isBlockIndirectlyGettingPowered(x, y, z)) {
+                entityPlayer.addChatMessage("§7power: direct§f " + power + "§7  indirect§f " + powerInd);
+            }
 
 
             Luma.log("side: "+side);

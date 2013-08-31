@@ -1,7 +1,6 @@
 package com.kelmai.luma.helpers;
 
 import net.minecraft.client.renderer.Tessellator;
-import static net.minecraftforge.common.ForgeDirection.*;
 
 /**
  * Created with IntelliJ IDEA.

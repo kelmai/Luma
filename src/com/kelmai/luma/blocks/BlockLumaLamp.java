@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -70,6 +69,8 @@ public class BlockLumaLamp extends Block {
         return true;
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
     public int getRenderType(){
         if ((this.inverted && !this.powered) || (!this.inverted && this.powered)  ) {
             return ClientProxy.lampRenderType;
