@@ -1,0 +1,20 @@
+0.2.1 - 2013-09-01
+- [NEW] Added custom tab "Luma" to creative mode inventory. All Luma blocks/items moved there
+- [NEW] New custom Renderer for Luma Lamps / Multilamps. disables Shading and makes the lamps glow more
+- [NEW] Added Debug Item only accessible in creative mode/NEI. Shows information in chat about the block that was right clicked. Will probably be removed at v1.0
+- [FIX] "Off"-states of blocks were shown in NEI. Fixed by disabling them using the NEI API
+- [FIX] Tweaked bar textures for caged lamps
+
+0.2.0 - 2013-08-27
+- [NEW] New Block: Luma Fixtures (only white for now)
+- [FIX] Corrected Textures for Multilamp - No longer has strange artifacts in corners
+- More internal code cleanup
+
+0.1.1 - 2013-08-19
+- [FIX] Levers can now be placed directly on lamps
+- Transferred code to GIT repository
+- Internal code cleanup / refactoring
+
+0.1.0 - 2013-08-18
+- First Release
+
