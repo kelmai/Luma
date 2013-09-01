@@ -35,7 +35,10 @@ import net.minecraft.item.ItemStack;
                 version             = "0.2.1")
 
 @NetworkMod (   clientSideRequired  = true,
-                serverSideRequired  = false)
+                serverSideRequired  = false,
+                channels            = {"LumaTest"},
+                packetHandler       = PacketManager.class)
+
 
 public class Luma {
     public static final String modID = "luma";

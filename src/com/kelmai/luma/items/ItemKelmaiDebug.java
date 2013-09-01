@@ -1,6 +1,7 @@
 package com.kelmai.luma.items;
 
 import com.kelmai.luma.Luma;
+import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -8,7 +9,12 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,6 +36,7 @@ public class ItemKelmaiDebug extends Item {
      * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
     public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int x, int y, int z, int side, float par8, float par9, float par10) {
+        boolean r = true;
         if (!world.isRemote) {
 
             int metadata = world.getBlockMetadata(x, y, z);
@@ -74,16 +81,20 @@ public class ItemKelmaiDebug extends Item {
                 entityPlayer.addChatMessage("§7power: direct§f " + power + "§7  indirect§f " + powerInd);
             }
 
-
+//            TileEntityFixture te = (TileEntityFixture)world.getBlockTileEntity(x,y,z);
+//            byte teSide = te.getSide();
+//
+//            Luma.log("TEside: "+side);
             Luma.log("side: "+side);
             Luma.log("par8: "+par8);
             Luma.log("par9: "+par9);
             Luma.log("par10: "+par10);
 
-            return true;
-        } else {
-            return false;
+            r = true;
         }
+
+
+        return r;
     }
 
     @SideOnly(Side.CLIENT)

@@ -110,11 +110,10 @@ public class BlockManager {
         block.setCreativeTab(creativeTab);
         GameRegistry.registerBlock(block, Luma.modID + "_block"+ulNamePart);
         GameRegistry.registerTileEntity(tileEntityClass, Luma.modID + "_tileEntity"+ulNamePart);
+        LanguageRegistry.addName(block, name);
         if (creativeTab == null) {
             NEIHiddenBlocks.add(block.blockID);
         }
-        LanguageRegistry.addName(block, name);
-
         return block;
     }
 

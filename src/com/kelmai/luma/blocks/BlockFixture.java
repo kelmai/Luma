@@ -4,6 +4,7 @@ import com.kelmai.luma.BlockManager;
 import com.kelmai.luma.Luma;
 import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +17,7 @@ import java.util.Random;
 
 import static net.minecraftforge.common.ForgeDirection.*;
 
-public class BlockFixture extends BlockCustom {
+public class BlockFixture extends BlockContainer {
 
     public boolean powered;
     public boolean bars;
@@ -140,15 +141,51 @@ public class BlockFixture extends BlockCustom {
         }
     }
 
+    /**
+     * Called throughout the code as a replacement for block instanceof BlockContainer
+     * Moving this to the Block base class allows for mods that wish to extend vinella
+     * blocks, and also want to have a tile entity on that block, may.
+     *
+     * Return true from this function to specify this block has a tile entity.
+     *
+     * @param metadata Metadata of the current block
+     * @return True if block has a tile entity, false otherwise
+     */
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return true;
+    }
+
+    /**
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
+     */
+    @Override
+    public boolean renderAsNormalBlock(){
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    /**
+     * The type of render function that is called for this block
+     */
+    @Override
+    public int getRenderType() {
+        return -1;
+    }
+
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer playerEntity, int par6, float par7, float par8, float par9) {
-		if(playerEntity.isSneaking())
+		if(playerEntity.isSneaking()) {
 			return false;
+        } else {
 
-        int meta = world.getBlockMetadata(x,y,z);
-        Luma.log("meta: "+meta);
-		return false;
+            return true;
+        }
 	}
 	
 	@Override
@@ -157,6 +194,11 @@ public class BlockFixture extends BlockCustom {
         te.blockMetadata = metadata;
 		return te;
 	}
+
+    @Override
+    public TileEntity createNewTileEntity(World world) {
+        return new TileEntityFixture();
+    }
 
     /**
      * checks to see if you can place this block can be placed on that side of a block: BlockLever overrides
@@ -195,7 +237,24 @@ public class BlockFixture extends BlockCustom {
         if (side == 3 && par1World.isBlockSolidOnSide(x, y, z - 1, SOUTH)) { b0 = 3; }
         if (side == 4 && par1World.isBlockSolidOnSide(x + 1, y, z, WEST)) { b0 = 2; }
         if (side == 5 && par1World.isBlockSolidOnSide(x - 1, y, z, EAST)) { b0 = 1; }
+
         return b0 + j1;
+    }
+
+    public void onPostBlockPlaced(World par1World, int x, int y, int z, int side) {
+//        int j1 = metadata & 8;
+//        byte b0 = -1;
+//        if (side == 0 && par1World.isBlockSolidOnSide(x, y + 1, z, DOWN)) { b0 = 0; }
+//        if (side == 1 && par1World.isBlockSolidOnSide(x, y - 1, z, UP)) { b0 = 5; }
+//        if (side == 2 && par1World.isBlockSolidOnSide(x, y, z + 1, NORTH)) { b0 = 4; }
+//        if (side == 3 && par1World.isBlockSolidOnSide(x, y, z - 1, SOUTH)) { b0 = 3; }
+//        if (side == 4 && par1World.isBlockSolidOnSide(x + 1, y, z, WEST)) { b0 = 2; }
+//        if (side == 5 && par1World.isBlockSolidOnSide(x - 1, y, z, EAST)) { b0 = 1; }
+
+        if (!par1World.isRemote) {
+            TileEntityFixture te = (TileEntityFixture)par1World.getBlockTileEntity(x,y,z);
+            te.setSide((byte)side);
+        }
     }
 
 
@@ -260,4 +319,6 @@ public class BlockFixture extends BlockCustom {
     public void registerIcons(IconRegister par1IconRegister) {
         this.blockIcon = par1IconRegister.registerIcon(Luma.modID + ":blockLumaLampOn_0");
     }
+
+
 }
