@@ -1,7 +1,5 @@
 package com.kelmai.luma.blocks.tileEntities;
 
-import com.kelmai.luma.BlockManager;
-import com.kelmai.luma.Luma;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,9 +8,6 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
-
-import java.util.Arrays;
 
 public class TileEntityFixture extends TileEntity {
 
@@ -25,6 +20,7 @@ public class TileEntityFixture extends TileEntity {
             this.side = val;
             worldObj.addBlockEvent(xCoord, yCoord, zCoord, getBlockType().blockID, 1, val);
         }
+
     }
     public byte getSide() {
         return side;
@@ -54,8 +50,9 @@ public class TileEntityFixture extends TileEntity {
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        //Luma.log("readFromNBT");
+
         side = compound.getByte("side");
+
     }
 
 
@@ -77,5 +74,10 @@ public class TileEntityFixture extends TileEntity {
         writeToNBT(var1);
         return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, var1);
     }
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {readFromNBT(pkt.customParam1);}
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+        readFromNBT(pkt.customParam1);
+        if (worldObj.isRemote) {
+            worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+        }
+    }
 }

@@ -97,7 +97,11 @@ public class BlockFixture extends BlockContainer {
                 }
             }
             handlePowerInput(par1World, par2, par3, par4);
+
+
         }
+
+
     }
 
 
@@ -197,6 +201,7 @@ public class BlockFixture extends BlockContainer {
 
 
     public TileEntity createNewTileEntity(World world) {
+
         return new TileEntityFixture();
     }
 

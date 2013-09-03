@@ -112,6 +112,20 @@ public class RecipeManager {
 
         // Colored Inverted Caged Luma Lamps
         makeDyedRecipes(BlockManager.blockLumaLampBarOnInv);
+
+
+
+        // Colored Fixtures
+        makeDyedRecipes(BlockManager.blockFixtureOff);
+
+        // Colored Inverted Fixtures
+        makeDyedRecipes(BlockManager.blockFixtureOnInv);
+
+        // Colored Caged Fixtures
+        makeDyedRecipes(BlockManager.blockFixtureOffBars);
+
+        // Colored Inverted Caged Fixtures
+        makeDyedRecipes(BlockManager.blockFixtureOnBarsInv);
     }
 
     public static void makeDyedRecipes(Block block) {

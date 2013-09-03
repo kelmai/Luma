@@ -33,10 +33,10 @@ public class BlockManager {
     private static final String[] lumaLampBarNames = makeColorNameList("Luma Lamp", "", "Caged");
     private static final String[] lumaLampBarNamesInv = makeColorNameList("Luma Lamp", "Inverted", "Caged");
 
-    private static final String[] fixtureNames = makeColorNameList("Luma Lamp", "", "");
-    private static final String[] fixtureNamesInv = makeColorNameList("Luma Lamp", "Inverted", "");
-    private static final String[] fixtureBarNames = makeColorNameList("Luma Lamp", "", "Caged");
-    private static final String[] fixtureBarNamesInv = makeColorNameList("Luma Lamp", "Inverted", "Caged");
+    private static final String[] fixtureNames = makeColorNameList("Fixture", "", "");
+    private static final String[] fixtureNamesInv = makeColorNameList("Fixture", "Inverted", "");
+    private static final String[] fixtureBarNames = makeColorNameList("Fixture", "", "Caged");
+    private static final String[] fixtureBarNamesInv = makeColorNameList("Fixture", "Inverted", "Caged");
 
     public static Block blockLumaLampOff;
     public static Block blockLumaLampOn;

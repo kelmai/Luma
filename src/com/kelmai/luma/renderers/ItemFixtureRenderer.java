@@ -51,7 +51,7 @@ public class ItemFixtureRenderer implements IItemRenderer {
             }
 
             case INVENTORY:{
-                renderTutBox(0f, -.5f, 0f, 1.2f, metadata);
+                renderTutBox(0f, -.7f, 0f, 1.2f, metadata);
                 return;
             }
 

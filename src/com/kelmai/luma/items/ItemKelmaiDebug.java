@@ -1,7 +1,6 @@
 package com.kelmai.luma.items;
 
 import com.kelmai.luma.Luma;
-import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -9,12 +8,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
-
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -80,8 +74,6 @@ public class ItemKelmaiDebug extends Item {
             if (world.isBlockIndirectlyGettingPowered(x, y, z)) {
                 entityPlayer.addChatMessage("§7power: direct§f " + power + "§7  indirect§f " + powerInd);
             }
-
-
             r = true;
         }
 

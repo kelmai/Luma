@@ -1,13 +1,11 @@
 package com.kelmai.luma.renderers;
 
 import com.kelmai.luma.BlockManager;
-import com.kelmai.luma.Luma;
 import com.kelmai.luma.ModelManager;
 import com.kelmai.luma.TextureManager;
 import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModelCustom;
@@ -57,16 +55,13 @@ public class TileEntityFixtureRenderer extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
-        //ModelManager.render(ModelManager.modelFixture, x, y, z, true);
 
-
-        //Luma.log("test "+tileEntity.blockMetadata);
-        int metadata = tileEntity.blockMetadata;
+        int metadata = tileEntity.getBlockMetadata();
         if (metadata == -1) {
             metadata = 0;
         }
         TileEntityFixture te = (TileEntityFixture)tileEntity;
-        //Luma.log("render "+te.getSide());
+
         byte side = te.getSide();
 
         if (side != -1) {
@@ -102,12 +97,10 @@ public class TileEntityFixtureRenderer extends TileEntitySpecialRenderer {
 
             if (curID == onID || curID == offInvID) {
                 GL11.glDisable(GL11.GL_LIGHTING);
-                //GL11.glDisable(GL11.GL_AMBIENT);
                 Minecraft.getMinecraft().renderEngine.func_110577_a(textureOn[metadata]);
             } else if (curID == offID || curID == onInvID) {
                 Minecraft.getMinecraft().renderEngine.func_110577_a(textureOff[metadata]);
             } else if (curID == onBarsID || curID == offBarsInvID) {
-                //GL11.glDisable(GL11.GL_);
                 GL11.glDisable(GL11.GL_LIGHTING);
                 Minecraft.getMinecraft().renderEngine.func_110577_a(textureOnBars[metadata]);
             } else if (curID == offBarsID || curID == onBarsInvID) {

@@ -1,7 +1,5 @@
 package com.kelmai.luma.items;
 
-import com.kelmai.luma.Luma;
-import com.kelmai.luma.blocks.BlockFixture;
 import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,8 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import static net.minecraftforge.common.ForgeDirection.*;
-import static net.minecraftforge.common.ForgeDirection.EAST;
-import static net.minecraftforge.common.ForgeDirection.WEST;
 
 /**
  * Created with IntelliJ IDEA.
