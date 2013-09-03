@@ -81,18 +81,9 @@ public class ItemKelmaiDebug extends Item {
                 entityPlayer.addChatMessage("§7power: direct§f " + power + "§7  indirect§f " + powerInd);
             }
 
-//            TileEntityFixture te = (TileEntityFixture)world.getBlockTileEntity(x,y,z);
-//            byte teSide = te.getSide();
-//
-//            Luma.log("TEside: "+side);
-            Luma.log("side: "+side);
-            Luma.log("par8: "+par8);
-            Luma.log("par9: "+par9);
-            Luma.log("par10: "+par10);
 
             r = true;
         }
-
 
         return r;
     }

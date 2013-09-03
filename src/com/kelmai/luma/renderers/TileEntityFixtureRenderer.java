@@ -1,10 +1,13 @@
 package com.kelmai.luma.renderers;
 
 import com.kelmai.luma.BlockManager;
+import com.kelmai.luma.Luma;
 import com.kelmai.luma.ModelManager;
 import com.kelmai.luma.TextureManager;
+import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModelCustom;
@@ -19,10 +22,10 @@ import org.lwjgl.opengl.GL11;
 public class TileEntityFixtureRenderer extends TileEntitySpecialRenderer {
 
     private static IModelCustom model;
-    private static ResourceLocation textureOn;
-    private static ResourceLocation textureOnBars;
-    private static ResourceLocation textureOff;
-    private static ResourceLocation textureOffBars;
+    private static ResourceLocation[] textureOn;
+    private static ResourceLocation[] textureOnBars;
+    private static ResourceLocation[] textureOff;
+    private static ResourceLocation[] textureOffBars;
 
     private static int onID;
     private static int onBarsID;
@@ -56,54 +59,65 @@ public class TileEntityFixtureRenderer extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
         //ModelManager.render(ModelManager.modelFixture, x, y, z, true);
 
-        GL11.glPushMatrix();
+
         //Luma.log("test "+tileEntity.blockMetadata);
-        switch (tileEntity.getBlockMetadata()) {
-            case 0:
-                GL11.glTranslatef((float)x, (float)y + 1f, (float)z + 1f);
-                GL11.glRotatef(180f, 1f, 0f, 0f);
-                break;
-            case 1:
-                GL11.glTranslatef((float)x, (float)y + 1f, (float)z);
-                GL11.glRotatef(-90f, 0f, 0f, 1f);
-                break;
-            case 2:
-                GL11.glTranslatef((float)x + 1f, (float)y, (float)z);
-                GL11.glRotatef(90f, 0f, 0f, 1f);
-                break;
-            case 3:
-                GL11.glTranslatef((float)x, (float)y + 1f, (float)z);
-                GL11.glRotatef(90f, 1f, 0f, 0f);
-                break;
-            case 4:
-                GL11.glTranslatef((float)x, (float)y, (float)z + 1f);
-                GL11.glRotatef(-90f, 1f, 0f, 0f);
-                break;
-            default:
-                GL11.glTranslatef((float)x, (float)y, (float)z);
-                break;
-
+        int metadata = tileEntity.blockMetadata;
+        if (metadata == -1) {
+            metadata = 0;
         }
+        TileEntityFixture te = (TileEntityFixture)tileEntity;
+        //Luma.log("render "+te.getSide());
+        byte side = te.getSide();
 
-        int curID = tileEntity.getBlockType().blockID;
+        if (side != -1) {
+            GL11.glPushMatrix();
+            switch (side) {
+                case 0:
+                    GL11.glTranslatef((float)x, (float)y + 1f, (float)z + 1f);
+                    GL11.glRotatef(180f, 1f, 0f, 0f);
+                    break;
+                case 1:
+                    GL11.glTranslatef((float)x, (float)y + 1f, (float)z);
+                    GL11.glRotatef(-90f, 0f, 0f, 1f);
+                    break;
+                case 2:
+                    GL11.glTranslatef((float)x + 1f, (float)y, (float)z);
+                    GL11.glRotatef(90f, 0f, 0f, 1f);
+                    break;
+                case 3:
+                    GL11.glTranslatef((float)x, (float)y + 1f, (float)z);
+                    GL11.glRotatef(90f, 1f, 0f, 0f);
+                    break;
+                case 4:
+                    GL11.glTranslatef((float)x, (float)y, (float)z + 1f);
+                    GL11.glRotatef(-90f, 1f, 0f, 0f);
+                    break;
+                default:
+                    GL11.glTranslatef((float)x, (float)y, (float)z);
+                    break;
 
-        if (curID == onID || curID == offInvID) {
-            GL11.glDisable(GL11.GL_LIGHTING);
-            //GL11.glDisable(GL11.GL_AMBIENT);
-            Minecraft.getMinecraft().renderEngine.func_110577_a(textureOn);
-        } else if (curID == offID || curID == onInvID) {
-            Minecraft.getMinecraft().renderEngine.func_110577_a(textureOff);
-        } else if (curID == onBarsID || curID == offBarsInvID) {
-            //GL11.glDisable(GL11.GL_);
-            GL11.glDisable(GL11.GL_LIGHTING);
-            Minecraft.getMinecraft().renderEngine.func_110577_a(textureOnBars);
-        } else if (curID == offBarsID || curID == onBarsInvID) {
-            Minecraft.getMinecraft().renderEngine.func_110577_a(textureOffBars);
+            }
+
+            int curID = tileEntity.getBlockType().blockID;
+
+            if (curID == onID || curID == offInvID) {
+                GL11.glDisable(GL11.GL_LIGHTING);
+                //GL11.glDisable(GL11.GL_AMBIENT);
+                Minecraft.getMinecraft().renderEngine.func_110577_a(textureOn[metadata]);
+            } else if (curID == offID || curID == onInvID) {
+                Minecraft.getMinecraft().renderEngine.func_110577_a(textureOff[metadata]);
+            } else if (curID == onBarsID || curID == offBarsInvID) {
+                //GL11.glDisable(GL11.GL_);
+                GL11.glDisable(GL11.GL_LIGHTING);
+                Minecraft.getMinecraft().renderEngine.func_110577_a(textureOnBars[metadata]);
+            } else if (curID == offBarsID || curID == onBarsInvID) {
+                Minecraft.getMinecraft().renderEngine.func_110577_a(textureOffBars[metadata]);
+            }
+
+            model.renderAll();
+            GL11.glEnable(GL11.GL_LIGHTING);
+            GL11.glPopMatrix();
         }
-
-        model.renderAll();
-        GL11.glEnable(GL11.GL_LIGHTING);
-        GL11.glPopMatrix();
 
     }
 }

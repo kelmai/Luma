@@ -4,6 +4,7 @@ import com.kelmai.luma.blocks.BlockFixture;
 import com.kelmai.luma.blocks.BlockLumaLamp;
 import com.kelmai.luma.blocks.BlockMultiLamp;
 import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
+import com.kelmai.luma.items.ItemBlockFixture;
 import com.kelmai.luma.items.ItemBlockLumaLamp;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -31,6 +32,11 @@ public class BlockManager {
     private static final String[] lumaLampNamesInv = makeColorNameList("Luma Lamp", "Inverted", "");
     private static final String[] lumaLampBarNames = makeColorNameList("Luma Lamp", "", "Caged");
     private static final String[] lumaLampBarNamesInv = makeColorNameList("Luma Lamp", "Inverted", "Caged");
+
+    private static final String[] fixtureNames = makeColorNameList("Luma Lamp", "", "");
+    private static final String[] fixtureNamesInv = makeColorNameList("Luma Lamp", "Inverted", "");
+    private static final String[] fixtureBarNames = makeColorNameList("Luma Lamp", "", "Caged");
+    private static final String[] fixtureBarNamesInv = makeColorNameList("Luma Lamp", "Inverted", "Caged");
 
     public static Block blockLumaLampOff;
     public static Block blockLumaLampOn;
@@ -75,15 +81,26 @@ public class BlockManager {
         blockMultiLampBarOff = newBlock(new BlockMultiLamp(blockStartId+10, false, true), "blockMultiLampBarOff", "Caged Multilamp", Luma.tab);
         blockMultiLampBarOn = newBlock(new BlockMultiLamp(blockStartId+11, true, true), "blockMultiLampBarOn", "Caged Multilamp", null);
 
-        blockFixtureOff = newCustomBlock(new BlockFixture(blockStartId+12, Material.glass, false, false, false), TileEntityFixture.class, "lumaFixtureOff", "Luma Fixture", Luma.tab);
-        blockFixtureOffBars = newCustomBlock(new BlockFixture(blockStartId+13, Material.glass, false, false, true), TileEntityFixture.class, "lumaFixtureOffBars", "Caged Luma Fixture", Luma.tab);
-        blockFixtureOn = newCustomBlock(new BlockFixture(blockStartId+14, Material.glass, true, false, false), TileEntityFixture.class, "lumaFixtureOn", "Luma Fixture", null);
-        blockFixtureOnBars = newCustomBlock(new BlockFixture(blockStartId+15, Material.glass, true, false, true), TileEntityFixture.class, "lumaFixtureOnBars", "Caged Luma Fixture", null);
+//        blockFixtureOff = newCustomBlock(new BlockFixture(blockStartId+12, Material.glass, false, false, false), TileEntityFixture.class, "lumaFixtureOff", "Luma Fixture", Luma.tab);
+//        blockFixtureOffBars = newCustomBlock(new BlockFixture(blockStartId+13, Material.glass, false, false, true), TileEntityFixture.class, "lumaFixtureOffBars", "Caged Luma Fixture", Luma.tab);
+//        blockFixtureOn = newCustomBlock(new BlockFixture(blockStartId+14, Material.glass, true, false, false), TileEntityFixture.class, "lumaFixtureOn", "Luma Fixture", null);
+//        blockFixtureOnBars = newCustomBlock(new BlockFixture(blockStartId+15, Material.glass, true, false, true), TileEntityFixture.class, "lumaFixtureOnBars", "Caged Luma Fixture", null);
+//
+//        blockFixtureOffInv = newCustomBlock(new BlockFixture(blockStartId+16, Material.glass, false, true, false), TileEntityFixture.class, "lumaFixtureOffInv", "Inverted Luma Fixture", Luma.tab);
+//        blockFixtureOffBarsInv = newCustomBlock(new BlockFixture(blockStartId+17, Material.glass, false, true, true), TileEntityFixture.class, "lumaFixtureOffBarsInv", "Caged Inverted Luma Fixture", Luma.tab);
+//        blockFixtureOnInv = newCustomBlock(new BlockFixture(blockStartId+18, Material.glass, true, true, false), TileEntityFixture.class, "lumaFixtureOnInv", "Inverted Luma Fixture", null);
+//        blockFixtureOnBarsInv = newCustomBlock(new BlockFixture(blockStartId+19, Material.glass, true, true, true), TileEntityFixture.class, "lumaFixtureOnBarsInv", "Caged Inverted Luma Fixture", null);
 
-        blockFixtureOffInv = newCustomBlock(new BlockFixture(blockStartId+16, Material.glass, false, true, false), TileEntityFixture.class, "lumaFixtureOffInv", "Inverted Luma Fixture", Luma.tab);
-        blockFixtureOffBarsInv = newCustomBlock(new BlockFixture(blockStartId+17, Material.glass, false, true, true), TileEntityFixture.class, "lumaFixtureOffBarsInv", "Caged Inverted Luma Fixture", Luma.tab);
-        blockFixtureOnInv = newCustomBlock(new BlockFixture(blockStartId+18, Material.glass, true, true, false), TileEntityFixture.class, "lumaFixtureOnInv", "Inverted Luma Fixture", null);
-        blockFixtureOnBarsInv = newCustomBlock(new BlockFixture(blockStartId+19, Material.glass, true, true, true), TileEntityFixture.class, "lumaFixtureOnBarsInv", "Caged Inverted Luma Fixture", null);
+
+        blockFixtureOff = newCustomColoredBlock(new BlockFixture(blockStartId + 12, Material.glass, false, false, false), TileEntityFixture.class, "lumaFixtureOff", fixtureNames, Luma.tab);
+        blockFixtureOffBars = newCustomColoredBlock(new BlockFixture(blockStartId + 13, Material.glass, false, false, true), TileEntityFixture.class, "lumaFixtureOffBars", fixtureBarNames, Luma.tab);
+        blockFixtureOn = newCustomColoredBlock(new BlockFixture(blockStartId + 14, Material.glass, true, false, false), TileEntityFixture.class, "lumaFixtureOn", fixtureNames, null);
+        blockFixtureOnBars = newCustomColoredBlock(new BlockFixture(blockStartId + 15, Material.glass, true, false, true), TileEntityFixture.class, "lumaFixtureOnBars", fixtureBarNames, null);
+
+        blockFixtureOffInv = newCustomColoredBlock(new BlockFixture(blockStartId + 16, Material.glass, false, true, false), TileEntityFixture.class, "lumaFixtureOffInv", fixtureNamesInv, Luma.tab);
+        blockFixtureOffBarsInv = newCustomColoredBlock(new BlockFixture(blockStartId + 17, Material.glass, false, true, true), TileEntityFixture.class, "lumaFixtureOffBarsInv", fixtureBarNamesInv, Luma.tab);
+        blockFixtureOnInv = newCustomColoredBlock(new BlockFixture(blockStartId + 18, Material.glass, true, true, false), TileEntityFixture.class, "lumaFixtureOnInv", fixtureNamesInv, null);
+        blockFixtureOnBarsInv = newCustomColoredBlock(new BlockFixture(blockStartId + 19, Material.glass, true, true, true), TileEntityFixture.class, "lumaFixtureOnBarsInv", fixtureBarNamesInv, null);
     }
 
     public static Block newBlock(Block block, String unlocalizedName, String name) {
@@ -114,6 +131,24 @@ public class BlockManager {
         if (creativeTab == null) {
             NEIHiddenBlocks.add(block.blockID);
         }
+        return block;
+    }
+
+    public static Block newCustomColoredBlock(Block block, Class<? extends TileEntity> tileEntityClass, String ulNamePart, String[] names, CreativeTabs creativeTab) {
+        block.setUnlocalizedName("block"+ulNamePart);
+        block.setCreativeTab(creativeTab);
+        LanguageRegistry.addName(block, names[0]);
+        GameRegistry.registerBlock(block, ItemBlockFixture.class, Luma.modID + "_block"+ulNamePart);
+        GameRegistry.registerTileEntity(tileEntityClass, Luma.modID + "_tileEntity"+ulNamePart);
+
+        if (creativeTab == null) {
+            NEIHiddenBlocks.add(block.blockID);
+        }
+        for (int ix = 0; ix < 16; ix++) {
+            ItemStack blockStack = new ItemStack(block, 1, ix);
+            LanguageRegistry.addName(blockStack, names[ix]);
+        }
+        Luma.log("colored special Block ID " + block.blockID + " (colored): " + ulNamePart);
         return block;
     }
 
