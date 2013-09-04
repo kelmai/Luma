@@ -30,6 +30,7 @@ public class ItemKelmaiDebug extends Item {
      * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
     public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int x, int y, int z, int side, float par8, float par9, float par10) {
+        boolean r = true;
         if (!world.isRemote) {
 
             int metadata = world.getBlockMetadata(x, y, z);
@@ -73,17 +74,10 @@ public class ItemKelmaiDebug extends Item {
             if (world.isBlockIndirectlyGettingPowered(x, y, z)) {
                 entityPlayer.addChatMessage("§7power: direct§f " + power + "§7  indirect§f " + powerInd);
             }
-
-
-            Luma.log("side: "+side);
-            Luma.log("par8: "+par8);
-            Luma.log("par9: "+par9);
-            Luma.log("par10: "+par10);
-
-            return true;
-        } else {
-            return false;
+            r = true;
         }
+
+        return r;
     }
 
     @SideOnly(Side.CLIENT)

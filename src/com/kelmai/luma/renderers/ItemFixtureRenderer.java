@@ -35,24 +35,28 @@ public class ItemFixtureRenderer implements IItemRenderer {
 
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+        int metadata = item.getItemDamage();
+        if (metadata == -1) {
+            metadata = 0;
+        }
         switch(type) {
             case ENTITY:{
-                renderTutBox(0f, 0f, 0f, 1f);
+                renderTutBox(0f, 0f, 0f, 1f, metadata);
                 return;
             }
 
             case EQUIPPED:{
-                renderTutBox(0f, 0f, 1.5f, 1.2f);
+                renderTutBox(0f, 0f, 1.5f, 1.2f, metadata);
                 return;
             }
 
             case INVENTORY:{
-                renderTutBox(0f, -.5f, 0f, 1.2f);
+                renderTutBox(0f, -.7f, 0f, 1.2f, metadata);
                 return;
             }
 
             case EQUIPPED_FIRST_PERSON:{
-                renderTutBox(0f, 1f, 1f, 1f);
+                renderTutBox(0f, 1f, 1f, 1f, metadata);
                 return;
             }
 
@@ -60,7 +64,7 @@ public class ItemFixtureRenderer implements IItemRenderer {
         }
     }
 
-    private void renderTutBox(float x, float y, float z, float scale) {
+    private void renderTutBox(float x, float y, float z, float scale, int metadata) {
         GL11.glPushMatrix();
 
         GL11.glTranslatef(x,  y,  z);
@@ -69,15 +73,15 @@ public class ItemFixtureRenderer implements IItemRenderer {
 
         if (this.bars) {
             if (this.inverted) {
-                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOnBars);
+                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOnBars[metadata]);
             } else {
-                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOffBars);
+                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOffBars[metadata]);
             }
         } else {
             if (this.inverted) {
-                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOn);
+                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOn[metadata]);
             } else {
-                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOff);
+                Minecraft.getMinecraft().renderEngine.func_110577_a(TextureManager.textureFixtureOff[metadata]);
             }
         }
         ModelManager.modelFixture.renderAll();
