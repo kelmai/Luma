@@ -2,6 +2,7 @@
 - [NEW] Added colored Fixtures
 - [FIX] Moved Fixtures down a bit when displayed as Inventory Items
 - Optimised render code
+- Changed standard starting IDs (Block: Item:) - can be changed in the config file
 
 0.2.1 - 2013-09-01
 - [NEW] Added custom tab "Luma" to creative mode inventory. All Luma blocks/items moved there

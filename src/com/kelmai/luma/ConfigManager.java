@@ -18,8 +18,8 @@ public class ConfigManager {
 
         // Blocks
         config.addCustomCategoryComment(        "Blocks",   "This is where you can set the IDs for the Blocks used by the Luma Lamp Mod");
-        BlockManager.blockStartId = config.get( "Blocks",   "Block Start ID",   2000,   "The Luma Mod will use 19 consecutive Block IDs, starting with the one you enter here").getInt();
-        ItemManager.itemStartId = config.get(   "Items",    "Item Start ID",    20000,  "The Luma Mod will use 1 consecutive Item IDs, starting with the one you enter here").getInt();
+        BlockManager.blockStartId = config.get( "Blocks",   "Block Start ID",   3750,   "The Luma Mod will use 19 consecutive Block IDs, starting with the one you enter here").getInt();
+        ItemManager.itemStartId = config.get(   "Items",    "Item Start ID",    12050,  "The Luma Mod will use 1 consecutive Item IDs, starting with the one you enter here").getInt();
 
         Luma.log("Loading Configuration");
 
