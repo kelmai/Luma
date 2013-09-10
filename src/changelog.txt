@@ -1,3 +1,7 @@
+0.3.0
+- TODO: [FIX] Placing Fixtures on vines
+- Changed ID system, not compatible with earlier versions.
+
 0.2.2 - 2013-09-04
 - [NEW] Added colored Fixtures
 - [FIX] Moved Fixtures down a bit when displayed as Inventory Items

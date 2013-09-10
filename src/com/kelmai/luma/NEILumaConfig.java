@@ -11,7 +11,6 @@ import codechicken.nei.api.IConfigureNEI;
  */
 public class NEILumaConfig implements IConfigureNEI {
     public void loadConfig() {
-        Luma.log("NEI CONFIG LOADED!!!");
         API.hideItems(BlockManager.NEIHiddenBlocks);
     }
 

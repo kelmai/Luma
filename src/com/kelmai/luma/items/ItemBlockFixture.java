@@ -73,6 +73,8 @@ public class ItemBlockFixture extends ItemBlock {
             {
                 ++par4;
             }
+
+
         }
         byte b0 = -1;
         if (par7 == 0 && par3World.isBlockSolidOnSide(par4, par5 + 1, par6, DOWN)) { b0 = 0; }
@@ -82,7 +84,10 @@ public class ItemBlockFixture extends ItemBlock {
         if (par7 == 4 && par3World.isBlockSolidOnSide(par4 + 1, par5, par6, WEST)) { b0 = 2; }
         if (par7 == 5 && par3World.isBlockSolidOnSide(par4 - 1, par5, par6, EAST)) { b0 = 1; }
         TileEntityFixture te = (TileEntityFixture)par3World.getBlockTileEntity(par4, par5, par6);
-        te.setSide(b0);
+        if (te != null) {
+            te.setSide(b0);
+        }
+
 
         return r;
     }

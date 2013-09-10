@@ -14,15 +14,20 @@ import net.minecraft.item.Item;
 public class ItemManager {
 
     public static int itemStartId;
-
     public static Item itemKelmaiDebug;
     public static Item itemChromaStone;
 
     public static void makeItems() {
-        itemChromaStone = new ItemChromaStone(ItemManager.itemStartId).setCreativeTab(Luma.tab).setUnlocalizedName("itemChromaStone");
+
+        // Chroma Stone
+        itemChromaStone = new ItemChromaStone(ConfigManager.itemChromaStoneId).setCreativeTab(Luma.tab).setUnlocalizedName("itemChromaStone");
         LanguageRegistry.addName(itemChromaStone, "Chroma Stone");
 
-        itemKelmaiDebug = new ItemKelmaiDebug(ItemManager.itemStartId+1).setCreativeTab(Luma.tab).setUnlocalizedName("itemKelmaiDebug");
-        LanguageRegistry.addName(itemKelmaiDebug, "KelMai Debug Item");
+
+        // Debug Item
+        if (ConfigManager.itemDebug) {
+            itemKelmaiDebug = new ItemKelmaiDebug(ConfigManager.itemDebugId).setCreativeTab(Luma.tab).setUnlocalizedName("itemKelmaiDebug");
+            LanguageRegistry.addName(itemKelmaiDebug, "KelMai Debug Item");
+        }
     }
 }

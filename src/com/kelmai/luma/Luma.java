@@ -75,7 +75,6 @@ public class Luma {
         RecipeManager.makeRecipes();
         proxy.registerRenderers();
 
-
     }
 
     public static void log(String str) {

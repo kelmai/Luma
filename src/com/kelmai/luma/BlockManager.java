@@ -2,6 +2,7 @@ package com.kelmai.luma;
 
 import com.kelmai.luma.blocks.BlockFixture;
 import com.kelmai.luma.blocks.BlockLumaLamp;
+import com.kelmai.luma.blocks.BlockLumaTube;
 import com.kelmai.luma.blocks.BlockMultiLamp;
 import com.kelmai.luma.blocks.tileEntities.TileEntityFixture;
 import com.kelmai.luma.items.ItemBlockFixture;
@@ -38,6 +39,8 @@ public class BlockManager {
     private static final String[] fixtureBarNames = makeColorNameList("Fixture", "", "Caged");
     private static final String[] fixtureBarNamesInv = makeColorNameList("Fixture", "Inverted", "Caged");
 
+    private static final String[] lumaTubeNames = makeColorNameList("Luma Tube", "", "");
+
     public static Block blockLumaLampOff;
     public static Block blockLumaLampOn;
     public static Block blockLumaLampOnInv;
@@ -51,6 +54,9 @@ public class BlockManager {
     public static Block blockMultiLampBarOn;
     public static Block blockMultiLampBarOff;
 
+    public static Block blockLumaTubeOff;
+    public static Block blockLumaTubeOn;
+
     public static Block blockFixtureOff;
     public static Block blockFixtureOffBars;
     public static Block blockFixtureOn;
@@ -63,44 +69,53 @@ public class BlockManager {
     public static Block blockFixtureOnBarsInv;
 
     public static void makeBlocks() {
-        blockLumaLampOff = newColoredBlock(new BlockLumaLamp(blockStartId, false, false, false), "blockLumaLampOff", lumaLampNames, Luma.tab);
-        blockLumaLampOn  = newColoredBlock(new BlockLumaLamp(blockStartId+1, true, false, false), "blockLumaLampOn", lumaLampNames, null);
+        int id;
 
-        blockLumaLampOnInv  = newColoredBlock(new BlockLumaLamp(blockStartId+2, false, false, true), "blockLumaLampOnInv", lumaLampNamesInv, Luma.tab);
-        blockLumaLampOffInv = newColoredBlock(new BlockLumaLamp(blockStartId+3, true, false, true), "blockLumaLampOffInv", lumaLampNamesInv, null);
+        // Luma Lamp
+        id = ConfigManager.blockLumaLampId;
+        blockLumaLampOff = newColoredBlock(new BlockLumaLamp(id, false, false, false), "blockLumaLampOff", lumaLampNames, Luma.tab);
+        blockLumaLampOn  = newColoredBlock(new BlockLumaLamp(id+1, true, false, false), "blockLumaLampOn", lumaLampNames, null);
+        blockLumaLampOnInv  = newColoredBlock(new BlockLumaLamp(id+2, false, false, true), "blockLumaLampOnInv", lumaLampNamesInv, Luma.tab);
+        blockLumaLampOffInv = newColoredBlock(new BlockLumaLamp(id+3, true, false, true), "blockLumaLampOffInv", lumaLampNamesInv, null);
 
-        blockLumaLampBarOff = newColoredBlock(new BlockLumaLamp(blockStartId+4, false, true, false), "blockLumaLampBarOff", lumaLampBarNames, Luma.tab);
-        blockLumaLampBarOn  = newColoredBlock(new BlockLumaLamp(blockStartId+5, true, true, false), "blockLumaLampBarOn", lumaLampBarNames, null);
-
-        blockLumaLampBarOnInv  = newColoredBlock(new BlockLumaLamp(blockStartId+6, false, true, true), "blockLumaLampBarOnInv", lumaLampBarNamesInv, Luma.tab);
-        blockLumaLampBarOffInv = newColoredBlock(new BlockLumaLamp(blockStartId+7, true, true, true), "blockLumaLampBarOffInv", lumaLampBarNamesInv, null);
-
-        blockMultiLampOff = newBlock(new BlockMultiLamp(blockStartId+8, false, false), "blockMultiLampOff", "Multilamp", Luma.tab);
-        blockMultiLampOn = newBlock(new BlockMultiLamp(blockStartId+9, true, false), "blockMultiLampOn", "Multilamp", null);
-
-        blockMultiLampBarOff = newBlock(new BlockMultiLamp(blockStartId+10, false, true), "blockMultiLampBarOff", "Caged Multilamp", Luma.tab);
-        blockMultiLampBarOn = newBlock(new BlockMultiLamp(blockStartId+11, true, true), "blockMultiLampBarOn", "Caged Multilamp", null);
-
-//        blockFixtureOff = newCustomBlock(new BlockFixture(blockStartId+12, Material.glass, false, false, false), TileEntityFixture.class, "lumaFixtureOff", "Luma Fixture", Luma.tab);
-//        blockFixtureOffBars = newCustomBlock(new BlockFixture(blockStartId+13, Material.glass, false, false, true), TileEntityFixture.class, "lumaFixtureOffBars", "Caged Luma Fixture", Luma.tab);
-//        blockFixtureOn = newCustomBlock(new BlockFixture(blockStartId+14, Material.glass, true, false, false), TileEntityFixture.class, "lumaFixtureOn", "Luma Fixture", null);
-//        blockFixtureOnBars = newCustomBlock(new BlockFixture(blockStartId+15, Material.glass, true, false, true), TileEntityFixture.class, "lumaFixtureOnBars", "Caged Luma Fixture", null);
-//
-//        blockFixtureOffInv = newCustomBlock(new BlockFixture(blockStartId+16, Material.glass, false, true, false), TileEntityFixture.class, "lumaFixtureOffInv", "Inverted Luma Fixture", Luma.tab);
-//        blockFixtureOffBarsInv = newCustomBlock(new BlockFixture(blockStartId+17, Material.glass, false, true, true), TileEntityFixture.class, "lumaFixtureOffBarsInv", "Caged Inverted Luma Fixture", Luma.tab);
-//        blockFixtureOnInv = newCustomBlock(new BlockFixture(blockStartId+18, Material.glass, true, true, false), TileEntityFixture.class, "lumaFixtureOnInv", "Inverted Luma Fixture", null);
-//        blockFixtureOnBarsInv = newCustomBlock(new BlockFixture(blockStartId+19, Material.glass, true, true, true), TileEntityFixture.class, "lumaFixtureOnBarsInv", "Caged Inverted Luma Fixture", null);
+        // Caged Luma Lamp
+        id = ConfigManager.blockLumaLampBarsId;
+        blockLumaLampBarOff = newColoredBlock(new BlockLumaLamp(id, false, true, false), "blockLumaLampBarOff", lumaLampBarNames, Luma.tab);
+        blockLumaLampBarOn  = newColoredBlock(new BlockLumaLamp(id+1, true, true, false), "blockLumaLampBarOn", lumaLampBarNames, null);
+        blockLumaLampBarOnInv  = newColoredBlock(new BlockLumaLamp(id+2, false, true, true), "blockLumaLampBarOnInv", lumaLampBarNamesInv, Luma.tab);
+        blockLumaLampBarOffInv = newColoredBlock(new BlockLumaLamp(id+3, true, true, true), "blockLumaLampBarOffInv", lumaLampBarNamesInv, null);
 
 
-        blockFixtureOff = newCustomColoredBlock(new BlockFixture(blockStartId + 12, Material.glass, false, false, false), TileEntityFixture.class, "lumaFixtureOff", fixtureNames, Luma.tab);
-        blockFixtureOffBars = newCustomColoredBlock(new BlockFixture(blockStartId + 13, Material.glass, false, false, true), TileEntityFixture.class, "lumaFixtureOffBars", fixtureBarNames, Luma.tab);
-        blockFixtureOn = newCustomColoredBlock(new BlockFixture(blockStartId + 14, Material.glass, true, false, false), TileEntityFixture.class, "lumaFixtureOn", fixtureNames, null);
-        blockFixtureOnBars = newCustomColoredBlock(new BlockFixture(blockStartId + 15, Material.glass, true, false, true), TileEntityFixture.class, "lumaFixtureOnBars", fixtureBarNames, null);
+        // Fixture
+        id = ConfigManager.blockFixtureId;
+        blockFixtureOff = newCustomColoredBlock(new BlockFixture(id, Material.glass, false, false, false), TileEntityFixture.class, "lumaFixtureOff", fixtureNames, Luma.tab);
+        blockFixtureOn = newCustomColoredBlock(new BlockFixture(id+1, Material.glass, true, false, false), TileEntityFixture.class, "lumaFixtureOn", fixtureNames, null);
+        blockFixtureOffInv = newCustomColoredBlock(new BlockFixture(id+2, Material.glass, false, true, false), TileEntityFixture.class, "lumaFixtureOffInv", fixtureNamesInv, Luma.tab);
+        blockFixtureOnInv = newCustomColoredBlock(new BlockFixture(id+3, Material.glass, true, true, false), TileEntityFixture.class, "lumaFixtureOnInv", fixtureNamesInv, null);
 
-        blockFixtureOffInv = newCustomColoredBlock(new BlockFixture(blockStartId + 16, Material.glass, false, true, false), TileEntityFixture.class, "lumaFixtureOffInv", fixtureNamesInv, Luma.tab);
-        blockFixtureOffBarsInv = newCustomColoredBlock(new BlockFixture(blockStartId + 17, Material.glass, false, true, true), TileEntityFixture.class, "lumaFixtureOffBarsInv", fixtureBarNamesInv, Luma.tab);
-        blockFixtureOnInv = newCustomColoredBlock(new BlockFixture(blockStartId + 18, Material.glass, true, true, false), TileEntityFixture.class, "lumaFixtureOnInv", fixtureNamesInv, null);
-        blockFixtureOnBarsInv = newCustomColoredBlock(new BlockFixture(blockStartId + 19, Material.glass, true, true, true), TileEntityFixture.class, "lumaFixtureOnBarsInv", fixtureBarNamesInv, null);
+
+        // Caged Fixture
+        id = ConfigManager.blockFixtureBarsId;
+        blockFixtureOffBars = newCustomColoredBlock(new BlockFixture(id, Material.glass, false, false, true), TileEntityFixture.class, "lumaFixtureOffBars", fixtureBarNames, Luma.tab);
+        blockFixtureOnBars = newCustomColoredBlock(new BlockFixture(id+1, Material.glass, true, false, true), TileEntityFixture.class, "lumaFixtureOnBars", fixtureBarNames, null);
+        blockFixtureOffBarsInv = newCustomColoredBlock(new BlockFixture(id+2, Material.glass, false, true, true), TileEntityFixture.class, "lumaFixtureOffBarsInv", fixtureBarNamesInv, Luma.tab);
+        blockFixtureOnBarsInv = newCustomColoredBlock(new BlockFixture(id+3, Material.glass, true, true, true), TileEntityFixture.class, "lumaFixtureOnBarsInv", fixtureBarNamesInv, null);
+
+
+        // Multilamp
+        id = ConfigManager.blockMultilampId;
+        blockMultiLampOff = newBlock(new BlockMultiLamp(id, false, false), "blockMultiLampOff", "Multilamp", Luma.tab);
+        blockMultiLampOn = newBlock(new BlockMultiLamp(id+1, true, false), "blockMultiLampOn", "Multilamp", null);
+
+        // Caged Multilamp
+        id = ConfigManager.blockMultilampBarsId;
+        blockMultiLampBarOff = newBlock(new BlockMultiLamp(id, false, true), "blockMultiLampBarOff", "Caged Multilamp", Luma.tab);
+        blockMultiLampBarOn = newBlock(new BlockMultiLamp(id+1, true, true), "blockMultiLampBarOn", "Caged Multilamp", null);
+
+        // Luma Tube
+        id = ConfigManager.blockLumaTubeId;
+        blockLumaTubeOff = newColoredBlock(new BlockLumaTube(id, false), "blockLumaTubeOff", lumaTubeNames, Luma.tab);
+        blockLumaTubeOn  = newColoredBlock(new BlockLumaTube(id+1, true), "blockLumaTubeOn", lumaTubeNames, null);
     }
 
     public static Block newBlock(Block block, String unlocalizedName, String name) {
